@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,242 +13,194 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+// Requires adding Reference to Assemblies/Extensions/Microsoft.Kinect 2.0
 using Microsoft.Kinect;
+
+//References:http://kinect.github.io/tutorial/lab03/index.html, http://www.indiana.edu/~dcnlab/KinectWorkshop/Page7.html
 
 namespace WPF_Kinect
 {
-    public enum DisplayFrameType
+    //Create an enum to define the currently selected mode. The code will now need to handle color, depth and infrared mode.
+    public enum Mode
     {
-        Infrared, Color
+        Color,
+        Depth,
+        Infrared
     }
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+
+    public partial class MainWindow : Window
     {
-        private KinectSensor kinectSensor = null;
-        private const DisplayFrameType DEFAULT_DISPLAYTYPE = DisplayFrameType.Color;
+        KinectSensor _sensor;
+        MultiSourceFrameReader _reader;
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        //Color is declared as default at the start
+        Mode _mode = Mode.Color;
 
         public MainWindow()
         {
             InitializeComponent();
-            Loaded += MainWindow_Loaded;
-            Unloaded += MainWindow_Unloaded;
-        }
 
-        #region Page Loaded, Unloaded Events, Setup Events
-        private void MainWindow_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if( kinectSensor != null && kinectSensor.IsOpen)
+            // Obtain the sensor and start it up
+            _sensor = KinectSensor.GetDefault(); // Different than article
+
+            if (_sensor != null)
             {
-                kinectSensor.Close();
+                _sensor.Open();
             }
+
+            // Specify the requires streams
+            _reader = _sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Depth | FrameSourceTypes.Infrared);
+
+            // Add an event handler
+            _reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
-            this.kinectSensor = KinectSensor.GetDefault();
-            //if(this.kinectSensor != null)
-            //{
-            //    this.kinectSensor.Open();
-            //    if (kinectSensor.IsOpen)
-            //    {
-            //        this.StatusText = "Kinect successfully acquired and opened!";
-            //    }
-            //    else
-            //    {
-            //        this.StatusText = "Cannot open kinect";
-            //    }
-            //}
-        }
+            // Get a reference to the multi-frame
+            var reference = e.FrameReference.AcquireFrame();
 
-        private void SetupCurrentDisplay(DisplayFrameType newDisplayType)
-        {
-            switch (newDisplayType)
+            // Open color frame
+            using (var frame = reference.ColorFrameReference.AcquireFrame())
             {
-                case DisplayFrameType.Infrared:
-                    break;
-                case DisplayFrameType.Color:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-        #endregion
-
-        #region Public Properties with methods
-        private DisplayFrameType currentDisplayFrameType;
-
-        private string statusText = null;
-        public string StatusText
-        {
-            get { return statusText; }
-            set
-            {
-                if (this.statusText != value)
+                if (frame != null)
                 {
-                    this.statusText = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private FrameDescription currentFrameDescription;
-        public FrameDescription CurrentFrameDescription
-        {
-            get { return this.currentFrameDescription; }
-            set
-            {
-                if (this.currentFrameDescription != value)
-                {
-                    this.currentFrameDescription = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
-
-        #region Colour Image Setup
-
-
-        #endregion
-
-
-        #region Infrared Imaging setup
-
-        private const int BytesPerPixel = 4;
-
-        private WriteableBitmap bitmap = null;
-
-        // == Infrared Frame Reader and buffers ==
-        private InfraredFrameReader InfraredFrameReader = null;
-        private ushort[] infraredFrameData = null;
-        private byte[] infraredPixels = null;
-
-        // == const values for use in maths around conversion from
-        //    infrared to pixel ==
-
-        // == this is 65535
-        private const float InfraredSourceValueMaximum = (float)ushort.MaxValue;
-
-        // lower and upper limits of the fram values that are rendered
-        // 
-        private const float InfraredOutputValueMinimum = 0.01f;
-
-        private const float InfraredOutputValueMaximum = 1.0f;
-
-        // average value of infrared based on research
-        private const float InfraredSceneValueAverage = 0.08f;
-
-
-        private const float InfraredSceneStandardDeviation = 3.0f;
-
-        private void btnInfrared_Click(object sender, RoutedEventArgs e)
-        {
-            // set up the infrared frame data
-            FrameDescription infraredFrameDescription = this.kinectSensor.InfraredFrameSource.FrameDescription;
-
-            this.InfraredFrameReader = this.kinectSensor.InfraredFrameSource.OpenReader();
-
-            this.InfraredFrameReader.FrameArrived += InfraredFrameReader_FrameArrived;
-
-            this.infraredFrameData = new ushort[infraredFrameDescription.Width * infraredFrameDescription.Height];
-            this.infraredPixels = new byte[infraredFrameDescription.Width * infraredFrameDescription.Height * BytesPerPixel];
-
-            this.bitmap = new WriteableBitmap(infraredFrameDescription.Width, 
-                                              infraredFrameDescription.Height,
-                                              96, 96, 
-                                              PixelFormats.Bgra32, null);
-            
-            this.CurrentFrameDescription = infraredFrameDescription;
-
-            this.kinectSensor.IsAvailableChanged += KinectSensor_IsAvailableChanged;
-
-            this.DataContext = this;
-
-            this.kinectSensor.Open();
-
-        }
-
-        private void InfraredFrameReader_FrameArrived(object sender, InfraredFrameArrivedEventArgs e)
-        {
-            bool infraredFrameProcessed = false;
-
-            using (InfraredFrame irFrame = e.FrameReference.AcquireFrame())
-            {
-                if(irFrame != null)
-                {
-                    FrameDescription irFrameDescription = irFrame.FrameDescription;
-                    if( ( (irFrameDescription.Width * irFrameDescription.Height) == this.infraredFrameData.Length) && 
-                        (irFrameDescription.Width == this.bitmap.Width) &&
-                        (irFrameDescription.Height == this.bitmap.Height) )
+                    // Do something with the frame...
+                    if (_mode == Mode.Color)
                     {
-                        // copy the pixel data from the image ot a temp array
-                        irFrame.CopyFrameDataToArray(this.infraredFrameData);
-                        infraredFrameProcessed = true;
+                        camera.Source = ToBitmap(frame);
                     }
                 }
             }
 
-            if(infraredFrameProcessed)
+            // Open depth frame
+            using (var frame = reference.DepthFrameReference.AcquireFrame())
             {
-                ConvertInfraredDataToPixels();
-                RenderPixelArray(this.infraredPixels);
+                if (frame != null)
+                {
+                    // Do something with the frame...
+                    if (_mode == Mode.Depth)
+                    {
+                        camera.Source = ToBitmap(frame);
+                    }
+                }
+            }
+
+            // Open infrared frame
+            using (var frame = reference.InfraredFrameReference.AcquireFrame())
+            {
+                if (frame != null)
+                {
+                    // Do something with the frame...
+                    if (_mode == Mode.Infrared)
+                    {
+                        camera.Source = ToBitmap(frame);
+                    }
+                }
             }
         }
-
-        private void ConvertInfraredDataToPixels()
+        // On color button click change camera to color mode
+        private void Color_Click(object sender, RoutedEventArgs e)
         {
-            int colorPixelIndex = 0;
-            for (int i = 0; i < this.infraredFrameData.Length; i++)
+            _mode = Mode.Color;
+        }
+
+        // On depth button click change camera to depth mode
+        private void Depth_Click(object sender, RoutedEventArgs e)
+        {
+            _mode = Mode.Depth;
+        }
+
+        // On infrared button click change camera to infrared mode
+        private void Infrared_Click(object sender, RoutedEventArgs e)
+        {
+            _mode = Mode.Infrared;
+        }
+
+        // Convert a ColorFrame to an ImageSource
+        private ImageSource ToBitmap(ColorFrame frame)
+        {
+            int width = frame.FrameDescription.Width;
+            int height = frame.FrameDescription.Height;
+            PixelFormat format = PixelFormats.Bgr32;
+
+            byte[] pixels = new byte[width * height * ((format.BitsPerPixel + 7) / 8)];
+
+            if (frame.RawColorImageFormat == ColorImageFormat.Bgra)
             {
-                float intensityRatio = (float)this.infraredFrameData[i] / InfraredSourceValueMaximum;
-
-                intensityRatio /= InfraredSceneValueAverage * InfraredSceneStandardDeviation;
-
-                intensityRatio = Math.Min(InfraredOutputValueMaximum, intensityRatio);
-                intensityRatio = Math.Max(InfraredOutputValueMinimum, intensityRatio);
-
-                byte intensity = (byte)(intensityRatio * 255.0f);
-                this.infraredPixels[colorPixelIndex++] = intensity; // Blue
-                this.infraredPixels[colorPixelIndex++] = intensity; // Red
-                this.infraredPixels[colorPixelIndex++] = intensity; // Green
-                this.infraredPixels[colorPixelIndex++] = 255;   // Alpha
+                frame.CopyRawFrameDataToArray(pixels);
             }
+            else
+            {
+                frame.CopyConvertedFrameDataToArray(pixels, ColorImageFormat.Bgra);
+            }
+
+            int stride = width * format.BitsPerPixel / 8;
+
+            return BitmapSource.Create(width, height, 96, 96, format, null, pixels, stride);
         }
 
-        private void RenderPixelArray(byte[] pixels)
+        // Convert a DepthFrame to an ImageSource
+        private ImageSource ToBitmap(DepthFrame frame)
         {
-            Int32Rect rect = new Int32Rect(0,
-                                           0, 
-                                           this.CurrentFrameDescription.Width, 
-                                           this.CurrentFrameDescription.Height);
-            // rect - the rectangle being written to
-            // pixels - the source array for the data
-            // stride - number of the pixels array per row
-            // offset - an offset to start at in the pixels array
-            bitmap.WritePixels(rect, pixels, this.currentFrameDescription.Width * BytesPerPixel, 0);
+            int width = frame.FrameDescription.Width;
+            int height = frame.FrameDescription.Height;
+            PixelFormat format = PixelFormats.Bgr32;
 
-            FrameDisplayImage.Source = this.bitmap;
+            ushort minDepth = frame.DepthMinReliableDistance;
+            ushort maxDepth = frame.DepthMaxReliableDistance;
+
+            ushort[] depthData = new ushort[width * height];
+            byte[] pixelData = new byte[width * height * (format.BitsPerPixel + 7) / 8];
+
+            frame.CopyFrameDataToArray(depthData);
+
+            int colorIndex = 0;
+            for (int depthIndex = 0; depthIndex < depthData.Length; ++depthIndex)
+            {
+                ushort depth = depthData[depthIndex];
+                byte intensity = (byte)(depth >= minDepth && depth <= maxDepth ? depth : 0);
+
+                pixelData[colorIndex++] = intensity; // Blue
+                pixelData[colorIndex++] = intensity; // Green
+                pixelData[colorIndex++] = intensity; // Red
+
+                ++colorIndex;
+            }
+
+            int stride = width * format.BitsPerPixel / 8;
+
+            return BitmapSource.Create(width, height, 96, 96, format, null, pixelData, stride);
         }
-        #endregion
 
-        private void KinectSensor_IsAvailableChanged(object sender, IsAvailableChangedEventArgs e)
+        // Convert an InfraredFrame to an ImageSource
+        private ImageSource ToBitmap(InfraredFrame frame)
         {
-            this.StatusText = this.kinectSensor.IsAvailable ? "Running" : "Not Available";
+            int width = frame.FrameDescription.Width;
+            int height = frame.FrameDescription.Height;
+            PixelFormat format = PixelFormats.Bgr32;
+
+            ushort[] infraredData = new ushort[width * height];
+            byte[] pixelData = new byte[width * height * (format.BitsPerPixel + 7) / 8];
+
+            frame.CopyFrameDataToArray(infraredData);
+
+            int colorIndex = 0;
+            for (int infraredIndex = 0; infraredIndex < infraredData.Length; ++infraredIndex)
+            {
+                ushort ir = infraredData[infraredIndex];
+                byte intensity = (byte)(ir >> 8);
+
+                pixelData[colorIndex++] = intensity; // Blue
+                pixelData[colorIndex++] = intensity; // Green   
+                pixelData[colorIndex++] = intensity; // Red
+
+                ++colorIndex;
+            }
+
+            int stride = width * format.BitsPerPixel / 8;
+
+            return BitmapSource.Create(width, height, 96, 96, format, null, pixelData, stride);
         }
-
-
     }
 }
