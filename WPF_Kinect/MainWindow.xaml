@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Kinect"
         mc:Ignorable="d"
-        Title="Kinect Camera" Height="350" Width="550">
+        Title="Kinect Camera" Height="1000" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Margin" Value="10,5" />
@@ -14,17 +14,21 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Content="Color" Style="{StaticResource ButtonStyle}" Click="Color_Click" />
-            <Button Content="Infrared" Style="{StaticResource ButtonStyle}" Click="Infrared_Click" />
-            <Button Content="Depth" Style="{StaticResource ButtonStyle}" Click="Depth_Click" />
-        </StackPanel>
-        <Image x:Name="camera" Grid.Row="1" Stretch="Uniform"/>
-    </Grid>
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Button Content="Color" Style="{StaticResource ButtonStyle}" Click="Color_Click" />
+                <Button Content="Infrared" Style="{StaticResource ButtonStyle}" Click="Infrared_Click" />
+                <Button Content="Depth" Style="{StaticResource ButtonStyle}" Click="Depth_Click" />
+                <Button Content="Body" Style="{StaticResource ButtonStyle}" Click="Body_Click" />
+            </StackPanel>
+            <Image x:Name="camera" Grid.Row="1" Stretch="Uniform"/>
+            <Canvas Name="canvas" Grid.Row="1"/>
+        </Grid>
+    </Viewbox>
 </Window>

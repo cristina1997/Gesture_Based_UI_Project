@@ -32,6 +32,8 @@ namespace WPF_Kinect
     {
         KinectSensor _sensor;
         MultiSourceFrameReader _reader;
+        IList<Body> _bodies;
+        bool _displayBody = false;
 
         //Color is declared as default at the start
         Mode _mode = Mode.Color;
@@ -40,19 +42,32 @@ namespace WPF_Kinect
         {
             InitializeComponent();
 
-            // Obtain the sensor and start it up
-            _sensor = KinectSensor.GetDefault(); // Different than article
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _sensor = KinectSensor.GetDefault();
 
             if (_sensor != null)
             {
                 _sensor.Open();
+
+                _reader = _sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Depth | FrameSourceTypes.Infrared | FrameSourceTypes.Body);
+                _reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (_reader != null)
+            {
+                _reader.Dispose();
             }
 
-            // Specify the requires streams
-            _reader = _sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Depth | FrameSourceTypes.Infrared);
-
-            // Add an event handler
-            _reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
+            if (_sensor != null)
+            {
+                _sensor.Close();
+            }
         }
 
         void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
@@ -71,6 +86,7 @@ namespace WPF_Kinect
                         camera.Source = ToBitmap(frame);
                     }
                 }
+
             }
 
             // Open depth frame
@@ -98,7 +114,131 @@ namespace WPF_Kinect
                     }
                 }
             }
+            // Open body frame
+            using (var frame = reference.BodyFrameReference.AcquireFrame())
+            {
+                if (frame != null)
+                {
+                    // Do something with the body frame...
+                    canvas.Children.Clear();
+
+                    _bodies = new Body[frame.BodyFrameSource.BodyCount];
+
+                    frame.GetAndRefreshBodyData(_bodies);
+
+                    foreach (var body in _bodies)
+                    {
+                        if (body.IsTracked)
+                        {
+                            DrawSkeleton(body);
+                        }
+                    }
+                }
+            }
         }
+
+        public void DrawSkeleton(Body body)
+        {
+            if (body == null) return;
+
+            // Draw the joints
+            foreach (Joint joint in body.Joints.Values)
+            {
+                DrawJoint(joint);
+            }
+
+            // Draw the bones
+            DrawLine(body.Joints[JointType.Head], body.Joints[JointType.Neck]);
+            DrawLine(body.Joints[JointType.Neck], body.Joints[JointType.SpineShoulder]);
+            DrawLine(body.Joints[JointType.SpineShoulder], body.Joints[JointType.ShoulderLeft]);
+            DrawLine(body.Joints[JointType.SpineShoulder], body.Joints[JointType.ShoulderRight]);
+            DrawLine(body.Joints[JointType.SpineShoulder], body.Joints[JointType.SpineMid]);
+            DrawLine(body.Joints[JointType.ShoulderLeft], body.Joints[JointType.ElbowLeft]);
+            DrawLine(body.Joints[JointType.ShoulderRight], body.Joints[JointType.ElbowRight]);
+            DrawLine(body.Joints[JointType.ElbowLeft], body.Joints[JointType.WristLeft]);
+            DrawLine(body.Joints[JointType.ElbowRight], body.Joints[JointType.WristRight]);
+            DrawLine(body.Joints[JointType.WristLeft], body.Joints[JointType.HandLeft]);
+            DrawLine(body.Joints[JointType.WristRight], body.Joints[JointType.HandRight]);
+            DrawLine(body.Joints[JointType.HandLeft], body.Joints[JointType.HandTipLeft]);
+            DrawLine(body.Joints[JointType.HandRight], body.Joints[JointType.HandTipRight]);
+            DrawLine(body.Joints[JointType.HandTipLeft], body.Joints[JointType.ThumbLeft]);
+            DrawLine(body.Joints[JointType.HandTipRight], body.Joints[JointType.ThumbRight]);
+            DrawLine(body.Joints[JointType.SpineMid], body.Joints[JointType.SpineBase]);
+            DrawLine(body.Joints[JointType.SpineBase], body.Joints[JointType.HipLeft]);
+            DrawLine(body.Joints[JointType.SpineBase], body.Joints[JointType.HipRight]);
+            DrawLine(body.Joints[JointType.HipLeft], body.Joints[JointType.KneeLeft]);
+            DrawLine(body.Joints[JointType.HipRight], body.Joints[JointType.KneeRight]);
+            DrawLine(body.Joints[JointType.KneeLeft], body.Joints[JointType.AnkleLeft]);
+            DrawLine(body.Joints[JointType.KneeRight], body.Joints[JointType.AnkleRight]);
+            DrawLine(body.Joints[JointType.AnkleLeft], body.Joints[JointType.FootLeft]);
+            DrawLine(body.Joints[JointType.AnkleRight], body.Joints[JointType.FootRight]);
+
+        }
+
+        public void DrawJoint(Joint joint)
+        {
+            if (joint.TrackingState == TrackingState.Tracked)
+            {
+                // 3D space point
+                CameraSpacePoint jointPosition = joint.Position;
+
+                // 2D space point
+                Point point = new Point();
+
+                ColorSpacePoint colorPoint = _sensor.CoordinateMapper.MapCameraPointToColorSpace(jointPosition);
+
+                // Handle inferred points
+                point.X = float.IsInfinity(colorPoint.X) ? 0 : colorPoint.X;
+                point.Y = float.IsInfinity(colorPoint.Y) ? 0 : colorPoint.Y;
+
+                // Draw an ellipse for that joint
+                Ellipse ellipse = new Ellipse { Fill = Brushes.Yellow, Width = 40, Height = 40 };
+
+                Canvas.SetLeft(ellipse, point.X - ellipse.Width / 2);
+                Canvas.SetTop(ellipse, point.Y - ellipse.Height / 2);
+
+                canvas.Children.Add(ellipse);
+            }
+        }
+
+        public void DrawLine(Joint first, Joint second)
+        {
+            if (first.TrackingState == TrackingState.NotTracked || second.TrackingState == TrackingState.NotTracked) return;
+
+            // Joint data is in Camera XYZ coordinates
+            // 3D space point
+            CameraSpacePoint jointFirstPosition = first.Position;
+            CameraSpacePoint jointSecondPosition = second.Position;
+
+            // 2D space points in XY coordinates
+            Point pointFirst = new Point();
+            Point pointSecond = new Point();
+
+            // Apply COORDINATE MAPPING - Here mapping to ColorSpace
+            ColorSpacePoint colorPointFirst = _sensor.CoordinateMapper.MapCameraPointToColorSpace(jointFirstPosition);
+            ColorSpacePoint colorPointSecond = _sensor.CoordinateMapper.MapCameraPointToColorSpace(jointSecondPosition);
+
+            // Handle inferred points
+            pointFirst.X = float.IsInfinity(colorPointFirst.X) ? 0 : colorPointFirst.X;
+            pointFirst.Y = float.IsInfinity(colorPointFirst.Y) ? 0 : colorPointFirst.Y;
+
+            pointSecond.X = float.IsInfinity(colorPointSecond.X) ? 0 : colorPointSecond.X;
+            pointSecond.Y = float.IsInfinity(colorPointSecond.Y) ? 0 : colorPointSecond.Y;
+
+            // Creat a Line using the ColorSpacePoints
+            Line line = new Line
+            {
+                X1 = pointFirst.X,
+                Y1 = pointFirst.Y,
+                X2 = pointSecond.X,
+                Y2 = pointSecond.Y,
+                StrokeThickness = 8,
+                Stroke = new SolidColorBrush(Colors.Yellow)
+            };
+
+            canvas.Children.Add(line);
+        }
+
         // On color button click change camera to color mode
         private void Color_Click(object sender, RoutedEventArgs e)
         {
@@ -116,6 +256,11 @@ namespace WPF_Kinect
         {
             _mode = Mode.Infrared;
         }
+        private void Body_Click(object sender, RoutedEventArgs e)
+        {
+            _displayBody = !_displayBody;
+        }
+
 
         // Convert a ColorFrame to an ImageSource
         private ImageSource ToBitmap(ColorFrame frame)
