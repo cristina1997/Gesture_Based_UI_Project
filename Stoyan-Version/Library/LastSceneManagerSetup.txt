@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/Stoyan/Desktop/KinectBubble_Unity/Assets/MainScene.unity
+- path: Assets/Game/Scenes/MainScene.unity
   isLoaded: 1
   isActive: 1
