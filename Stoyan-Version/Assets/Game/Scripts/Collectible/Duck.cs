@@ -54,7 +54,7 @@ public class Duck : MonoBehaviour
         StopCoroutine(mCurrentChanger);
         mMovementDir = Vector3.zero;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3f);
 
         transform.position = mDuckManager.GetPlanePosition();
 
