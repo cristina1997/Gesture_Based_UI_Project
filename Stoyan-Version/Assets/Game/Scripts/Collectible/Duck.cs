@@ -5,19 +5,19 @@ using UnityEngine;
 public class Duck : MonoBehaviour
 {
 
-    public Sprite mDuckSprite;
+    //public Sprite mDuckSprite;
 
     [HideInInspector]
     public DuckManager mDuckManager = null;
 
     private GameObject duckManagerObject;
     private Vector3 mMovementDir = Vector3.zero;    // randomized movement direction
-    private SpriteRenderer mSpriteRenderer = null;
+    //private SpriteRenderer mSpriteRenderer = null;
     private Coroutine mCurrentChanger = null;       // changing the direction
 
     private void Awake()
     {
-        mSpriteRenderer = GetComponent<SpriteRenderer>();
+        //mSpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -44,7 +44,8 @@ public class Duck : MonoBehaviour
     void Update()
     {
         // changing the position of the bubbles
-        transform.position += mMovementDir * Time.deltaTime * 0.5f;
+        transform.position += mMovementDir * Time.deltaTime * 0.03f;
+
 
     }
 
@@ -54,7 +55,7 @@ public class Duck : MonoBehaviour
         StopCoroutine(mCurrentChanger);
         mMovementDir = Vector3.zero;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
 
         transform.position = mDuckManager.GetPlanePosition();
 
@@ -67,10 +68,10 @@ public class Duck : MonoBehaviour
         while (gameObject.activeSelf)
         {
             // it lets the duck go th the left or right
-            mMovementDir = new Vector2(Random.Range(-100, 100) * 0.01f, Random.Range(0, 100) * 0.01f);
+            mMovementDir = new Vector2(Random.Range(-100, 100), Random.Range(0, 100));
 
             // generated every 5 seconds
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(5.0f);
         }
     }
 
