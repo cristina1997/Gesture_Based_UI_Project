@@ -69,7 +69,7 @@ public class DuckManager : MonoBehaviour
 
     private IEnumerator CreateDucks()
     {
-        while (allDucks.Count < 1)
+        while (allDucks.Count < 5)
         {
 
             // Create and add the ducks
