@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Duck : MonoBehaviour
+public class DuckRT : MonoBehaviour
 {
-
     //public Sprite mDuckSprite;
 
     [HideInInspector]
     public DuckManager mDuckManager = null;
 
     private GameObject duckManagerObject;
-    private Vector3 mMovementDir = Vector3.zero;    // randomized movement direction
+    private Vector3 mMovementDir = Vector3.left;    // randomized movement direction
     //private SpriteRenderer mSpriteRenderer = null;
     private Coroutine mCurrentChanger = null;       // changing the direction
 
@@ -27,7 +26,7 @@ public class Duck : MonoBehaviour
         duckManagerObject = GameObject.Find("DuckManager");
         mDuckManager = (DuckManager)duckManagerObject.GetComponent(typeof(DuckManager));
 
-        mCurrentChanger = StartCoroutine(DirectionChanger());
+        mCurrentChanger = StartCoroutine(MoveLeft(0.1f, 0.03f));
     }
 
     private void OnBecameInvisible()
@@ -35,8 +34,8 @@ public class Duck : MonoBehaviour
         // turn off the game object when no longer seen by the camera
         //gameObject.SetActive(false);
 
-        // moving the bubble back to the screen before disabling it
-        transform.position = mDuckManager.GetPlanePosition();
+        // moving the duck back to the screen before disabling it
+        transform.position = mDuckManager.GetPlanePositionRight();
     }
 
 
@@ -44,35 +43,28 @@ public class Duck : MonoBehaviour
     void Update()
     {
         // changing the position of the bubbles
-        transform.position += mMovementDir * Time.deltaTime * 0.03f;
+        transform.position += mMovementDir * Time.deltaTime * 5f;
 
 
     }
 
     public IEnumerator DestroyDucks()
-    {       
-
+    {
         StopCoroutine(mCurrentChanger);
-        mMovementDir = Vector3.zero;
-
         yield return new WaitForSeconds(0.5f);
-
-        transform.position = mDuckManager.GetPlanePosition();
-
-        mCurrentChanger = StartCoroutine(DirectionChanger());
+        transform.position = mDuckManager.GetPlanePositionRight();
+        mCurrentChanger = StartCoroutine(MoveLeft(0.1f, 0.03f));
     }
 
-    private IEnumerator DirectionChanger()
+    private IEnumerator MoveLeft(float moveAmount, float waitTime)
     {
         // the while loop runs while the game object is active
+        // Move left forever, could just as easily check for a certain bound like:
+        // while (transform.position.x < -10.0f) {
         while (gameObject.activeSelf)
         {
-            // it lets the duck go th the left or right
-            mMovementDir = new Vector2(Random.Range(-100, 100), Random.Range(0, 100));
-
-            // generated every 5 seconds
-            yield return new WaitForSeconds(5.0f);
+            transform.position += mMovementDir * Time.deltaTime * moveAmount;
+            yield return new WaitForSeconds(waitTime);
         }
     }
-
 }

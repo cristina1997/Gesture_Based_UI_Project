@@ -33,18 +33,23 @@ public class Hand : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        DuckLT duckLT = collision.gameObject.GetComponent<DuckLT>();
+        DuckRT duckRT = collision.gameObject.GetComponent<DuckRT>();
+
         // if the object is collected then give the boolean a value of true
-        if (!collision.gameObject.CompareTag("Duck"))
-            return;
-        else if (collision.gameObject.CompareTag("Duck"))
+        if (collision.gameObject.CompareTag("DuckLT"))
         {
-            Debug.Log("COLLISION");
+            //Debug.Log("COLLISION LEFT");
             duckManager.AddScore(scoreValue);
             isDuckDestroyed = true;
-        }
-
-        Duck duck = collision.gameObject.GetComponent<Duck>();
-        StartCoroutine(duck.DestroyDucks());
+            StartCoroutine(duckLT.DestroyDucks());
+        } else if (collision.gameObject.CompareTag("DuckRT")) {
+            //Debug.Log("COLLISION RIGHT");
+            duckManager.AddScore(scoreValue);
+            isDuckDestroyed = true;
+            StartCoroutine(duckRT.DestroyDucks());
+        } else 
+            return;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

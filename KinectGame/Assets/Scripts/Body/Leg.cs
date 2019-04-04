@@ -34,14 +34,13 @@ public class Leg : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // if the object is collected then give the boolean a value of true
-        if (!collision.gameObject.CompareTag("Enemy"))
-            return;
-        else if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("LEG COLLISION");
-            enemyManager.AddScore(scoreValue);
             isEnemyDestroyed = true;
         }
+        else
+            return;
 
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         StartCoroutine(enemy.DestroyEnemies());

@@ -5,24 +5,30 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
+
+    // left duck variables
+    //public GameObject leftEnemyPrefab;
+    //private List<EnemyLT> allDucksLT = new List<EnemyLT>();
+    //private Vector2 bottomLeft, centerLeft = Vector2.zero;
+
+
+    //// right duck variables
+    //public GameObject rightEnemyPrefab;
+    //private List<EnemyRT> allDucksRT = new List<EnemyRT>();
+    //private Vector2 bottomRight, centerRight = Vector2.zero;
+
     public GameObject enemyPrefab;
     private List<Enemy> allEnemies = new List<Enemy>();
     private Vector2 bottomLeft = Vector2.zero;
     private Vector2 topRight = Vector2.zero;
     public Transform[] spawnPoints;
     //private new Camera camera;
-
-    public Text scoreText;
-    private int score;
-
+    
     private void Awake()
     {
 
-        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.farClipPlane));
-        topRight = Camera.main.ScreenToWorldPoint(new Vector3(
-            Camera.main.pixelWidth,
-            Camera.main.pixelHeight / 2,
-            Camera.main.farClipPlane));
+        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 100, Camera.main.farClipPlane));
+        topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2, Camera.main.farClipPlane));
     }
 
     // Start is called before the first frame update
@@ -34,12 +40,12 @@ public class EnemyManager : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.farClipPlane)), 0.5f);
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(
-            Camera.main.pixelWidth,
-            Camera.main.pixelHeight,
-            Camera.main.farClipPlane)), 0.5f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 100, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2, Camera.main.farClipPlane)), 0.5f);
+
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 100, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2, Camera.main.farClipPlane)), 0.5f);
 
     }
 
@@ -69,7 +75,7 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator CreateEnemies()
     {
-        while (allEnemies.Count < 1)
+        while (allEnemies.Count < 2)
         {
 
             // Create and add the enemy
@@ -82,17 +88,6 @@ public class EnemyManager : MonoBehaviour
 
             yield return new WaitForSeconds(2f);
         }
-    }
-
-    public void AddScore(int newScoreValue)
-    {
-        score += newScoreValue;
-        UpdateScore();
-    }
-
-    void UpdateScore()
-    {
-        scoreText.text = "Score: " + score;
     }
 
 }

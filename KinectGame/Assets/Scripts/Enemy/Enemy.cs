@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public EnemyManager mEnemyManager = null;
 
     private GameObject enemyManagerObject;
-    private Vector3 mMovementDir = Vector3.zero;    // randomized movement direction
+    private Vector3 mMovementDir = Vector3.right;    // randomized movement direction
     //private SpriteRenderer mSpriteRenderer = null;
     private Coroutine mCurrentChanger = null;       // changing the direction
 
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         enemyManagerObject = GameObject.Find("EnemyManager");
         mEnemyManager = (EnemyManager)enemyManagerObject.GetComponent(typeof(EnemyManager));
 
-        mCurrentChanger = StartCoroutine(DirectionChanger());
+        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.03f));
     }
 
     private void OnBecameInvisible()
@@ -53,25 +53,23 @@ public class Enemy : MonoBehaviour
     {
 
         StopCoroutine(mCurrentChanger);
-        mMovementDir = Vector3.zero;
 
         yield return new WaitForSeconds(0.5f);
 
         transform.position = mEnemyManager.GetPlanePosition();
 
-        mCurrentChanger = StartCoroutine(DirectionChanger());
+        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.03f));
     }
 
-    private IEnumerator DirectionChanger()
+    private IEnumerator MoveLeft(float moveAmount, float waitTime)
     {
         // the while loop runs while the game object is active
+        // Move left forever, could just as easily check for a certain bound like:
+        // while (transform.position.x < -10.0f) {
         while (gameObject.activeSelf)
         {
-            // it lets the duck go th the left or right
-            mMovementDir = new Vector2(Random.Range(-100, 100), Random.Range(0, 100));
-
-            // generated every 5 seconds
-            yield return new WaitForSeconds(5.0f);
+            transform.position += mMovementDir * Time.deltaTime * moveAmount;
+            yield return new WaitForSeconds(waitTime);
         }
     }
 

@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Duck
-  - Enemy
+  - DuckLT
+  - DuckRT
+  - EnemyRT
+  - EnemyLT
   layers:
   - Default
   - TransparentFX
