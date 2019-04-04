@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public IEnumerator DestroyDucks()
+    public IEnumerator DestroyEnemies()
     {
 
         StopCoroutine(mCurrentChanger);

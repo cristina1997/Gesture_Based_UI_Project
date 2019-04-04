@@ -1336,10 +1336,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1435215110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8415684663ffc3b4b8745736369f7ab9, type: 3}
+  m_Script: {fileID: 11500000, guid: 548bf53dbc5ca0342a2c3357acc9dc61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mHandMesh: {fileID: 1435215109}
+  mLegMesh: {fileID: 1435215109}
   scoreValue: 0
 --- !u!58 &1435215116
 CircleCollider2D:
@@ -1387,10 +1387,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1435215112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8415684663ffc3b4b8745736369f7ab9, type: 3}
+  m_Script: {fileID: 11500000, guid: 548bf53dbc5ca0342a2c3357acc9dc61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mHandMesh: {fileID: 1435215111}
+  mLegMesh: {fileID: 1435215111}
   scoreValue: 0
 --- !u!1 &1486994876
 GameObject:
