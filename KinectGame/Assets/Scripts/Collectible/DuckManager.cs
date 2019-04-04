@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class DuckManager : MonoBehaviour
 {
     public GameObject duckPrefab;
-
     private List<Duck> allDucks = new List<Duck>();
     private Vector2 bottomLeft = Vector2.zero;
     private Vector2 topRight = Vector2.zero;
+    public Transform[] spawnPoints;
     //private new Camera camera;
 
     public Text scoreText;
@@ -64,12 +64,12 @@ public class DuckManager : MonoBehaviour
         float targetX = Random.Range(bottomLeft.x, topRight.x);
         float targetY = Random.Range(bottomLeft.y, topRight.y);
 
-        return new Vector3(targetX, targetY, 0);
+        return new Vector3(targetX, targetY, 0); 
     }
 
     private IEnumerator CreateDucks()
     {
-        while (allDucks.Count < 5)
+        while (allDucks.Count < 1)
         {
 
             // Create and add the ducks

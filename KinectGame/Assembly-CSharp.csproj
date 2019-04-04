@@ -83,6 +83,8 @@
     <Compile Include="Assets\Scripts\Body\Hand.cs" />
     <Compile Include="Assets\Scripts\Collectible\Duck.cs" />
     <Compile Include="Assets\Scripts\Collectible\DuckManager.cs" />
+    <Compile Include="Assets\Scripts\Collectible\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Collectible\EnemyManager.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Unity Projects/KinectGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
