@@ -14,7 +14,7 @@ public class Hand : MonoBehaviour
     {
          GameObject duckManagerObject = GameObject.Find("DuckManager");
         if (duckManagerObject != null)
-        {
+        {          
             duckManager = duckManagerObject.GetComponent <DuckManager>();
             scoreValue = 1;
         }
@@ -38,6 +38,7 @@ public class Hand : MonoBehaviour
             return;
         else if (collision.gameObject.CompareTag("Duck"))
         {
+            Debug.Log("COLLISION");
             duckManager.AddScore(scoreValue);
             isDuckDestroyed = true;
         }
