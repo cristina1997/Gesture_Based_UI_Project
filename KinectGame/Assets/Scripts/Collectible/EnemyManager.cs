@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EnemyManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    private List<Enemy> allDucks = new List<Enemy>();
+    private List<Enemy> allEnemies = new List<Enemy>();
     private Vector2 bottomLeft = Vector2.zero;
     private Vector2 topRight = Vector2.zero;
     public Transform[] spawnPoints;
@@ -69,16 +69,16 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator CreateEnemies()
     {
-        while (allDucks.Count < 1)
+        while (allEnemies.Count < 1)
         {
 
-            // Create and add the ducks
-            GameObject newDuckObj = Instantiate(enemyPrefab, GetPlanePosition(), Quaternion.identity, transform);
-            Enemy newEnemy = newDuckObj.GetComponent<Enemy>();
+            // Create and add the enemy
+            GameObject newEnemyObj = Instantiate(enemyPrefab, GetPlanePosition(), Quaternion.identity, transform);
+            Enemy newEnemy = newEnemyObj.GetComponent<Enemy>();
 
-            // Setup the duck
+            // Setup the enemy
             newEnemy.mEnemyManager = this;
-            allDucks.Add(newEnemy);
+            allEnemies.Add(newEnemy);
 
             yield return new WaitForSeconds(2f);
         }
