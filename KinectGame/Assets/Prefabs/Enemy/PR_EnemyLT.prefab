@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 774943173751108775}
   - component: {fileID: 774943173751108768}
   - component: {fileID: 774943173751108770}
-  - component: {fileID: 2206783681519016126}
+  - component: {fileID: 1424787338214190119}
   m_Layer: 0
   m_Name: PR_EnemyLT
   m_TagString: EnemyLT
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2206783681519016126
+--- !u!114 &1424787338214190119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 774943173751108771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 027616fb482d1084383f95734ecd61ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 434f50e119f2b3649acebd884e3ac33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mEnemyManager: {fileID: 0}

@@ -45,8 +45,6 @@ public class Enemy : MonoBehaviour
     {
         // changing the position of the bubbles
         transform.position += mMovementDir * Time.deltaTime * 0.03f;
-
-
     }
 
     public IEnumerator DestroyEnemies()
@@ -60,6 +58,8 @@ public class Enemy : MonoBehaviour
 
         mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.03f));
     }
+
+
 
     private IEnumerator MoveLeft(float moveAmount, float waitTime)
     {

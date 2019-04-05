@@ -22,7 +22,6 @@ public class DuckManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(Camera.main.pixelWidth);
         centerLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 550, Camera.main.pixelHeight / 2, Camera.main.farClipPlane));
         topLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 550, Camera.main.pixelHeight - 80, Camera.main.farClipPlane));
 

@@ -7,87 +7,102 @@ public class EnemyManager : MonoBehaviour
 {
 
     // left duck variables
-    //public GameObject leftEnemyPrefab;
-    //private List<EnemyLT> allDucksLT = new List<EnemyLT>();
-    //private Vector2 bottomLeft, centerLeft = Vector2.zero;
-
-
-    //// right duck variables
-    //public GameObject rightEnemyPrefab;
-    //private List<EnemyRT> allDucksRT = new List<EnemyRT>();
-    //private Vector2 bottomRight, centerRight = Vector2.zero;
-
-    public GameObject enemyPrefab;
-    private List<Enemy> allEnemies = new List<Enemy>();
-    private Vector2 bottomLeft = Vector2.zero;
-    private Vector2 topRight = Vector2.zero;
-    public Transform[] spawnPoints;
-    //private new Camera camera;
+    public GameObject leftEnemyPrefab;
+    private List<EnemyLT> allEnemiesLT = new List<EnemyLT>();
+    private Vector2 bottomLeft, centerLeft = Vector2.zero;
     
+
+    //right duck variables
+    public GameObject rightEnemyPrefab;
+    private List<EnemyRT> allEnemiesRT = new List<EnemyRT>();
+    private Vector2 bottomRight, centerRight = Vector2.zero;
+
     private void Awake()
     {
 
-        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 100, Camera.main.farClipPlane));
-        topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2, Camera.main.farClipPlane));
+        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 75, Camera.main.farClipPlane));
+        centerLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 60, Camera.main.farClipPlane));
+
+        bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 75, Camera.main.farClipPlane));
+        centerRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 60, Camera.main.farClipPlane));
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //score = 0;
-        //UpdateScore();
         StartCoroutine(CreateEnemies());
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 100, Camera.main.farClipPlane)), 0.5f);
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 75, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 60, Camera.main.farClipPlane)), 0.5f);
 
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 100, Camera.main.farClipPlane)), 0.5f);
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 75, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 60, Camera.main.farClipPlane)), 0.5f);
 
     }
-
-    //private void Spawn()
-    //{
-    //    float distanceFromCamera = camera.nearClipPlane; // Change this value if you want
-    //    Vector3 topLeft = camera.ViewportToWorldPoint(new Vector3(0, 1, distanceFromCamera));
-    //    Vector3 topRight = camera.ViewportToWorldPoint(new Vector3(1, 1, distanceFromCamera));
-    //    Vector3 spawnPoint = Vector3.Lerp(topLeft, topRight, Random.value); // Get a random point between the topLeft and topRight point
-    //    GameObject clone = Instantiate(prefab, spawnPoint, Quaternion.identity);
-    //}
 
     public Vector3 GetPlanePosition()
     {
 
-        //float distanceFromCamera = camera.nearClipPlane; // Change this value if you want
-        //Vector3 topLeft = camera.ViewportToWorldPoint(new Vector3(0, 1, distanceFromCamera));
-        //Vector3 topRight = camera.ViewportToWorldPoint(new Vector3(1, 1, distanceFromCamera));
-        //Vector3 spawnPoint = Vector3.Lerp(topLeft, topRight, Random.value); // Get a random point between the topLeft and topRight point
-
         // Random position
-        float targetX = Random.Range(bottomLeft.x, topRight.x);
-        float targetY = Random.Range(bottomLeft.y, topRight.y);
+        float targetX = Random.Range(bottomLeft.x, centerLeft.x);
+        float targetY = Random.Range(bottomLeft.y, centerLeft.y);
 
         return new Vector3(targetX, targetY, 0);  
     }
 
+
+    public Vector3 GetPlanePositionLeft()
+    {
+
+        // Random position
+        float targetX = Random.Range(bottomLeft.x, centerLeft.x);
+        float targetY = Random.Range(bottomLeft.y, centerLeft.y);
+
+        return new Vector3(targetX, targetY, 0);
+    }
+
+
+    public Vector3 GetPlanePositionRight()
+    {
+
+        // Random position
+        float targetX = Random.Range(bottomRight.x, centerRight.x);
+        float targetY = Random.Range(bottomRight.y, centerRight.y);
+
+        return new Vector3(targetX, targetY, 0);
+    }
+
     private IEnumerator CreateEnemies()
     {
-        while (allEnemies.Count < 2)
+        while (allEnemiesLT.Count < 2 || allEnemiesRT.Count < 2)
         {
 
-            // Create and add the enemy
-            GameObject newEnemyObj = Instantiate(enemyPrefab, GetPlanePosition(), Quaternion.identity, transform);
-            Enemy newEnemy = newEnemyObj.GetComponent<Enemy>();
+            // Create and add the ducks
+            // Left
+            GameObject newEnemyObjLeft = Instantiate(leftEnemyPrefab, GetPlanePositionLeft(), Quaternion.identity, transform);
+            EnemyLT newEnemyLeft = newEnemyObjLeft.GetComponent<EnemyLT>();
 
-            // Setup the enemy
-            newEnemy.mEnemyManager = this;
-            allEnemies.Add(newEnemy);
+            // Right
+            // Create and add the ducks
+            GameObject newEnemyObjRight = Instantiate(rightEnemyPrefab, GetPlanePositionRight(), Quaternion.identity, transform);
+            EnemyRT newEnemyRight = newEnemyObjRight.GetComponent<EnemyRT>();
+
+            // Set up Ducks
+            // Left
+            newEnemyLeft.mEnemyManager = this;
+            allEnemiesLT.Add(newEnemyLeft);
+
+            // Right
+            newEnemyRight.mEnemyManager = this;
+            allEnemiesRT.Add(newEnemyRight);
 
             yield return new WaitForSeconds(2f);
         }
     }
+
+ 
 
 }

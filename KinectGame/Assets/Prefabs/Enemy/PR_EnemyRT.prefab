@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4110385049046846279}
   - component: {fileID: 4110385049046846272}
   - component: {fileID: 4110385049046846274}
-  - component: {fileID: 3272482821467154270}
+  - component: {fileID: 6204754889164888704}
   m_Layer: 0
   m_Name: PR_EnemyRT
   m_TagString: EnemyRT
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3272482821467154270
+--- !u!114 &6204754889164888704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4110385049046846275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 027616fb482d1084383f95734ecd61ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 1445dff4846d90d41a389dca0d92c0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mEnemyManager: {fileID: 0}
