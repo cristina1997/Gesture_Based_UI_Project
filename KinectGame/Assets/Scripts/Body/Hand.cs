@@ -37,18 +37,21 @@ public class Hand : MonoBehaviour
         DuckRT duckRT = collision.gameObject.GetComponent<DuckRT>();
 
         // if the object is collected then give the boolean a value of true
-        if (collision.gameObject.CompareTag("DuckLT"))
+        if (collision.gameObject.CompareTag("DuckRT") || collision.gameObject.CompareTag("DuckLT"))
         {
-            //Debug.Log("COLLISION LEFT");
             duckManager.AddScore(scoreValue);
             isDuckDestroyed = true;
-            StartCoroutine(duckLT.DestroyDucks());
-        } else if (collision.gameObject.CompareTag("DuckRT")) {
-            //Debug.Log("COLLISION RIGHT");
-            duckManager.AddScore(scoreValue);
-            isDuckDestroyed = true;
-            StartCoroutine(duckRT.DestroyDucks());
-        } else 
+
+            if (collision.gameObject.CompareTag("DuckLT"))
+            {
+                Debug.Log("COLLISION LEFT");
+                StartCoroutine(duckLT.DestroyDucks());
+            } else if (collision.gameObject.CompareTag("DuckRT"))
+            {
+                Debug.Log("COLLISION RIGHT");
+                StartCoroutine(duckRT.DestroyDucks());
+            }
+        } else
             return;
     }
 

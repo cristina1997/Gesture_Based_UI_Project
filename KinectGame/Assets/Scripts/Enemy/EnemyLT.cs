@@ -46,7 +46,7 @@ public class EnemyLT : MonoBehaviour
         transform.position += mMovementDir * Time.deltaTime * 0.05f;
     }
 
-    public IEnumerator DestroyDucks()
+    public IEnumerator DestroyEnemies()
     {
 
         StopCoroutine(mCurrentChanger);

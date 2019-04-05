@@ -26,7 +26,7 @@ public class EnemyRT : MonoBehaviour
         enemyManagerObject = GameObject.Find("EnemyManager");
         mEnemyManager = (EnemyManager)enemyManagerObject.GetComponent(typeof(EnemyManager));
 
-        mCurrentChanger = StartCoroutine(MoveLeft(0.1f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveLeft(9.0f, 0.03f));
     }
 
     private void OnBecameInvisible()
@@ -43,17 +43,17 @@ public class EnemyRT : MonoBehaviour
     void Update()
     {
         // changing the position of the bubbles
-        transform.position += mMovementDir * Time.deltaTime * 5f;
+        transform.position += mMovementDir * Time.deltaTime * 0.05f;
 
 
     }
 
-    public IEnumerator DestroyDucks()
+    public IEnumerator DestroyEnemies()
     {
         StopCoroutine(mCurrentChanger);
         yield return new WaitForSeconds(0.5f);
         transform.position = mEnemyManager.GetPlanePositionRight();
-        mCurrentChanger = StartCoroutine(MoveLeft(0.1f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveLeft(9.0f, 0.03f));
     }
 
     private IEnumerator MoveLeft(float moveAmount, float waitTime)

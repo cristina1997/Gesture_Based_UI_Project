@@ -16,7 +16,6 @@ public class Leg : MonoBehaviour
         if (enemyManagerObject != null)
         {
             enemyManager = enemyManagerObject.GetComponent<EnemyManager>();
-            scoreValue = 1;
         }
         if (enemyManager == null)
         {
@@ -33,17 +32,28 @@ public class Leg : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        EnemyLT enemyLT = collision.gameObject.GetComponent<EnemyLT>();
+        EnemyRT enemyRT = collision.gameObject.GetComponent<EnemyRT>();
+
         // if the object is collected then give the boolean a value of true
-        if (collision.gameObject.CompareTag("Enemy"))
+        // if the object is collected then give the boolean a value of true
+        if (collision.gameObject.CompareTag("EnemyRT") || collision.gameObject.CompareTag("EnemyLT"))
         {
-            Debug.Log("LEG COLLISION");
             isEnemyDestroyed = true;
+
+            if (collision.gameObject.CompareTag("EnemyLT"))
+            {
+                Debug.Log("COLLISION LEFT");
+                StartCoroutine(enemyLT.DestroyEnemies());
+            }
+            else if (collision.gameObject.CompareTag("EnemyRT"))
+            {
+                Debug.Log("COLLISION RIGHT");
+                StartCoroutine(enemyRT.DestroyEnemies());
+            }
         }
         else
             return;
-
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        StartCoroutine(enemy.DestroyEnemies());
     }
 
     private void OnTriggerExit2D(Collider2D collision)

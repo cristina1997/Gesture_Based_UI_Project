@@ -26,7 +26,7 @@ public class DuckRT : MonoBehaviour
         duckManagerObject = GameObject.Find("DuckManager");
         mDuckManager = (DuckManager)duckManagerObject.GetComponent(typeof(DuckManager));
 
-        mCurrentChanger = StartCoroutine(MoveLeft(0.1f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveLeft(9.0f, 0.03f));
     }
 
     private void OnBecameInvisible()
@@ -43,7 +43,7 @@ public class DuckRT : MonoBehaviour
     void Update()
     {
         // changing the position of the bubbles
-        transform.position += mMovementDir * Time.deltaTime * 5f;
+        transform.position += mMovementDir * Time.deltaTime * 0.05f;
 
 
     }
@@ -53,7 +53,7 @@ public class DuckRT : MonoBehaviour
         StopCoroutine(mCurrentChanger);
         yield return new WaitForSeconds(0.5f);
         transform.position = mDuckManager.GetPlanePositionRight();
-        mCurrentChanger = StartCoroutine(MoveLeft(0.1f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveLeft(9.0f, 0.03f));
     }
 
     private IEnumerator MoveLeft(float moveAmount, float waitTime)
