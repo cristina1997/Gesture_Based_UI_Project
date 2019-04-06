@@ -1,0 +1,1 @@
+C:\Users\Kamilka\Gesture_Based_UI_Project\KinectGame\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache

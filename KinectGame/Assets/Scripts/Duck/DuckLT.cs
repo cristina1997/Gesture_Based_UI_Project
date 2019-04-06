@@ -49,7 +49,7 @@ public class DuckLT : MonoBehaviour
     {
 
         StopCoroutine(mCurrentChanger);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
 
         transform.position = mDuckManager.GetPlanePositionLeft();
         mCurrentChanger = StartCoroutine(MoveRight(5.0f, 0.5f));

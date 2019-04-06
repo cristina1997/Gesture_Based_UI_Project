@@ -43,12 +43,12 @@ public class Leg : MonoBehaviour
 
             if (collision.gameObject.CompareTag("EnemyLT"))
             {
-                Debug.Log("COLLISION LEFT");
+                Debug.Log("COLLISION LEFT LEG");
                 StartCoroutine(enemyLT.DestroyEnemies());
             }
             else if (collision.gameObject.CompareTag("EnemyRT"))
             {
-                Debug.Log("COLLISION RIGHT");
+                Debug.Log("COLLISION RIGHT LEG");
                 StartCoroutine(enemyRT.DestroyEnemies());
             }
         }

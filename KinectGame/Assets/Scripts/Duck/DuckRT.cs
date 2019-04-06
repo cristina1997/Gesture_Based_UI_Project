@@ -26,7 +26,7 @@ public class DuckRT : MonoBehaviour
         duckManagerObject = GameObject.Find("DuckManager");
         mDuckManager = (DuckManager)duckManagerObject.GetComponent(typeof(DuckManager));
 
-        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.5f));
     }
 
     private void OnBecameInvisible()
@@ -49,10 +49,10 @@ public class DuckRT : MonoBehaviour
     public IEnumerator DestroyDucks()
     {
         StopCoroutine(mCurrentChanger);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
 
         transform.position = mDuckManager.GetPlanePositionRight();
-        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.5f));
     }
 
     private IEnumerator MoveLeft(float moveAmount, float waitTime)
@@ -66,4 +66,6 @@ public class DuckRT : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
         }
     }
+
+   
 }

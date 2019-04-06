@@ -5,6 +5,8 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     public Transform mHandMesh;
+
+
     public static bool isDuckDestroyed;
     public int scoreValue;
     private DuckManager duckManager;
@@ -37,22 +39,22 @@ public class Hand : MonoBehaviour
         DuckRT duckRT = collision.gameObject.GetComponent<DuckRT>();
 
         // if the object is collected then give the boolean a value of true
-        if (collision.gameObject.CompareTag("DuckRT") || collision.gameObject.CompareTag("DuckLT"))
+        if ( collision.gameObject.CompareTag("DuckLT") || collision.gameObject.CompareTag("DuckRT"))
         {
             duckManager.AddScore(scoreValue);
             isDuckDestroyed = true;
 
             if (collision.gameObject.CompareTag("DuckLT"))
             {
-                Debug.Log("COLLISION LEFT");
+                Debug.Log("COLLISION LEFT HAND");
                 StartCoroutine(duckLT.DestroyDucks());
-            } else if (collision.gameObject.CompareTag("DuckRT"))
+            }
+            if (collision.gameObject.CompareTag("DuckRT"))
             {
-                Debug.Log("COLLISION RIGHT");
+                Debug.Log("COLLISION RIGHT HAND");
                 StartCoroutine(duckRT.DestroyDucks());
             }
-        } else
-            return;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
