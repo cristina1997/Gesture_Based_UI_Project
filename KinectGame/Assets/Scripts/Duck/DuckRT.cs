@@ -10,7 +10,7 @@ public class DuckRT : MonoBehaviour
     public DuckManager mDuckManager = null;
 
     private GameObject duckManagerObject;
-    private Vector3 mMovementDir = Vector3.left;    // randomized movement direction
+    private Vector3 mMovementDir = Vector3.zero;    // randomized movement direction
     //private SpriteRenderer mSpriteRenderer = null;
     private Coroutine mCurrentChanger = null;       // changing the direction
 
@@ -26,7 +26,7 @@ public class DuckRT : MonoBehaviour
         duckManagerObject = GameObject.Find("DuckManager");
         mDuckManager = (DuckManager)duckManagerObject.GetComponent(typeof(DuckManager));
 
-        mCurrentChanger = StartCoroutine(MoveLeft(9.0f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.03f));
     }
 
     private void OnBecameInvisible()
@@ -43,17 +43,16 @@ public class DuckRT : MonoBehaviour
     void Update()
     {
         // changing the position of the bubbles
-        transform.position += mMovementDir * Time.deltaTime * 0.05f;
-
-
+        transform.position += mMovementDir * Time.deltaTime * 5f;
     }
 
     public IEnumerator DestroyDucks()
     {
         StopCoroutine(mCurrentChanger);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+
         transform.position = mDuckManager.GetPlanePositionRight();
-        mCurrentChanger = StartCoroutine(MoveLeft(9.0f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.03f));
     }
 
     private IEnumerator MoveLeft(float moveAmount, float waitTime)
@@ -63,7 +62,7 @@ public class DuckRT : MonoBehaviour
         // while (transform.position.x < -10.0f) {
         while (gameObject.activeSelf)
         {
-            transform.position += mMovementDir * Time.deltaTime * moveAmount;
+            mMovementDir = Vector2.left;
             yield return new WaitForSeconds(waitTime);
         }
     }
