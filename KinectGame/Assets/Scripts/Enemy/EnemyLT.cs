@@ -51,10 +51,11 @@ public class EnemyLT : MonoBehaviour
 
         StopCoroutine(mCurrentChanger);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         transform.position = mEnemyManager.GetPlanePositionLeft();
 
+        //mCurrentChanger = StartCoroutine(MoveRight(6.0f, 0.03f));
         mCurrentChanger = StartCoroutine(MoveRight(9.0f, 0.03f));
     }
 

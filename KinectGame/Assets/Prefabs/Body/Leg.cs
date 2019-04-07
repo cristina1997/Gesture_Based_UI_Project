@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Leg : MonoBehaviour
 {
-    public Transform mLegMesh;
+     public Transform mLegMesh;
     public static bool isEnemyDestroyed;
     public int scoreValue;
     private EnemyManager enemyManager;
@@ -39,6 +39,7 @@ public class Leg : MonoBehaviour
         // if the object is collected then give the boolean a value of true
         if (collision.gameObject.CompareTag("EnemyRT") || collision.gameObject.CompareTag("EnemyLT"))
         {
+            Debug.Log("here");
             isEnemyDestroyed = true;
 
             if (collision.gameObject.CompareTag("EnemyLT"))
@@ -46,7 +47,7 @@ public class Leg : MonoBehaviour
                 Debug.Log("COLLISION LEFT LEG");
                 StartCoroutine(enemyLT.DestroyEnemies());
             }
-            else if (collision.gameObject.CompareTag("EnemyRT"))
+            if (collision.gameObject.CompareTag("EnemyRT"))
             {
                 Debug.Log("COLLISION RIGHT LEG");
                 StartCoroutine(enemyRT.DestroyEnemies());
