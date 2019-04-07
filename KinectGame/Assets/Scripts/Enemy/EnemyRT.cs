@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyRT : MonoBehaviour
 {
-     //public Sprite mDuckSprite;
+    //public Sprite mDuckSprite;
 
     [HideInInspector]
     public EnemyManager mEnemyManager = null;
