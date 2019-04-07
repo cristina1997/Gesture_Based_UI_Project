@@ -32,7 +32,8 @@ public class VoiceTest : MonoBehaviour
         actions.Add("start", Resume);
         actions.Add("start again", Resume);
 
-
+        actions.Add("quit", QuitGame);
+        actions.Add("finish", QuitGame);
 
         //checks Array of strings
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray(),confidence);
@@ -68,5 +69,11 @@ public class VoiceTest : MonoBehaviour
         pausemenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }
