@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 
 
+
 public class VoiceTest : MonoBehaviour
 {
     // Waits for string
@@ -13,6 +14,8 @@ public class VoiceTest : MonoBehaviour
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public static bool GameIsPaused = false;
     public GameObject pausemenuUI;
+    public ConfidenceLevel confidence = ConfidenceLevel.Medium;
+    public float speed = 1;
 
     void Start()
     {
@@ -26,12 +29,25 @@ public class VoiceTest : MonoBehaviour
         actions.Add("back", Resume);
         actions.Add("go back", Resume);
         actions.Add("resume", Resume);
+        actions.Add("start", Resume);
+        actions.Add("start again", Resume);
 
+        actions.Add("quit", QuitGame);
+        actions.Add("finish", QuitGame);
 
         //checks Array of strings
-        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
+        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray(),confidence);
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (keywordRecognizer != null && keywordRecognizer.IsRunning)
+        {
+            keywordRecognizer.OnPhraseRecognized -= RecognizedSpeech;
+            keywordRecognizer.Stop();
+        }
     }
 
     //Recognize what was said
@@ -40,16 +56,24 @@ public class VoiceTest : MonoBehaviour
         actions[speech.text].Invoke();
     }
 
+    // Start Pause
     private void Pause() {
         pausemenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
+    // Resume to game
     private void Resume()
     {
         pausemenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }
