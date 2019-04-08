@@ -22,11 +22,11 @@ public class DuckManager : MonoBehaviour
 
     private void Awake()
     {
-        centerLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 550, Camera.main.pixelHeight / 2, Camera.main.farClipPlane));
-        topLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 550, Camera.main.pixelHeight - 80, Camera.main.farClipPlane));
+        centerLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 550, Camera.main.pixelHeight - 160, Camera.main.farClipPlane));
+        topLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 550, Camera.main.pixelHeight - 145, Camera.main.farClipPlane));
 
-        centerRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 100, Camera.main.pixelHeight / 2, Camera.main.farClipPlane));
-        topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 100, Camera.main.pixelHeight - 80, Camera.main.farClipPlane));
+        centerRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 100, Camera.main.pixelHeight - 160, Camera.main.farClipPlane));
+        topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 100, Camera.main.pixelHeight - 145, Camera.main.farClipPlane));
     }
 
     // Start is called before the first frame update
@@ -40,11 +40,11 @@ public class DuckManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2, Camera.main.farClipPlane)), 0.5f);
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight - 80, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight - 160, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight - 145, Camera.main.farClipPlane)), 0.5f);
 
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2, Camera.main.farClipPlane)), 0.5f);
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight - 80, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight - 160, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight - 145, Camera.main.farClipPlane)), 0.5f);
 
     }
 

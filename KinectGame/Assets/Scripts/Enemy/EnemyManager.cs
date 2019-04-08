@@ -20,10 +20,10 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
 
-        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 75, Camera.main.farClipPlane));
+        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 67, Camera.main.farClipPlane));
         centerLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 60, Camera.main.farClipPlane));
 
-        bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 75, Camera.main.farClipPlane));
+        bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 67, Camera.main.farClipPlane));
         centerRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 60, Camera.main.farClipPlane));
     }
 
@@ -35,10 +35,10 @@ public class EnemyManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 75, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 67, Camera.main.farClipPlane)), 0.5f);
         Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 600, Camera.main.pixelHeight / 2 - 60, Camera.main.farClipPlane)), 0.5f);
 
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 75, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 67, Camera.main.farClipPlane)), 0.5f);
         Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 150, Camera.main.pixelHeight / 2 - 60, Camera.main.farClipPlane)), 0.5f);
 
     }
@@ -77,7 +77,7 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator CreateEnemies()
     {
-        while (allEnemiesLT.Count < 2 || allEnemiesRT.Count < 2)
+        while (allEnemiesLT.Count < 1 || allEnemiesRT.Count < 1)
         {
 
             // Create and add the ducks
