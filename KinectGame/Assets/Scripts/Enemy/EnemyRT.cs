@@ -10,7 +10,7 @@ public class EnemyRT : MonoBehaviour
     public EnemyManager mEnemyManager = null;
 
     private GameObject enemyManagerObject;
-    private Vector3 mMovementDir = Vector2.right;    // randomized movement direction
+    private Vector3 mMovementDir = Vector2.left;    // randomized movement direction
     //private SpriteRenderer mSpriteRenderer = null;
     private Coroutine mCurrentChanger = null;       // changing the direction
 

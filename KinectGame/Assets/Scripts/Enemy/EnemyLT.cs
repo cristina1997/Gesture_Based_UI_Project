@@ -10,7 +10,7 @@ public class EnemyLT : MonoBehaviour
     public EnemyManager mEnemyManager = null;
 
     private GameObject enemyManagerObject;
-    private Vector3 mMovementDir = Vector3.right;    // randomized movement direction
+    private Vector3 mMovementDir = Vector2.right;    // randomized movement direction
     //private SpriteRenderer mSpriteRenderer = null;
     private Coroutine mCurrentChanger = null;       // changing the direction
 
@@ -26,7 +26,7 @@ public class EnemyLT : MonoBehaviour
         enemyManagerObject = GameObject.Find("EnemyManager");
         mEnemyManager = (EnemyManager)enemyManagerObject.GetComponent(typeof(EnemyManager));
 
-        mCurrentChanger = StartCoroutine(MoveRight(9.0f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveRight(5.0f, 0.5f));
     }
 
     private void OnBecameInvisible()
@@ -43,20 +43,16 @@ public class EnemyLT : MonoBehaviour
     void Update()
     {
         // changing the position of the ducks
-        transform.position += mMovementDir * Time.deltaTime * 0.05f;
+        transform.position += mMovementDir * Time.deltaTime * 5f;
     }
 
     public IEnumerator DestroyEnemies()
     {
 
         StopCoroutine(mCurrentChanger);
-
         yield return new WaitForSeconds(0.1f);
-
         transform.position = mEnemyManager.GetPlanePositionLeft();
-
-        //mCurrentChanger = StartCoroutine(MoveRight(6.0f, 0.03f));
-        mCurrentChanger = StartCoroutine(MoveRight(9.0f, 0.03f));
+        mCurrentChanger = StartCoroutine(MoveRight(5.0f, 0.5f));
     }
 
     private IEnumerator MoveRight(float moveAmount, float waitTime)
@@ -66,7 +62,7 @@ public class EnemyLT : MonoBehaviour
         // while (transform.position.x < -10.0f) {
         while (gameObject.activeSelf)
         {
-            transform.position += mMovementDir * Time.deltaTime * moveAmount;
+            mMovementDir = Vector2.right;
             yield return new WaitForSeconds(waitTime);
         }
     }

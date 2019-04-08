@@ -80,10 +80,9 @@
     <Compile Include="Assets\KinectScripts\Samples\MouseControl.cs" />
     <Compile Include="Assets\KinectScripts\Samples\SetSceneAvatars.cs" />
     <Compile Include="Assets\KinectScripts\Samples\SimpleGestureListener.cs" />
-    <Compile Include="Assets\Prefabs\Body\Hand.cs" />
-    <Compile Include="Assets\Prefabs\Body\Leg.cs" />
-    <Compile Include="Assets\Prefabs\HealthBar\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Background\ScrollingBackground.cs" />
+    <Compile Include="Assets\Scripts\Body\Hand.cs" />
+    <Compile Include="Assets\Scripts\Body\Leg.cs" />
     <Compile Include="Assets\Scripts\Duck\Duck.cs" />
     <Compile Include="Assets\Scripts\Duck\DuckLT.cs" />
     <Compile Include="Assets\Scripts\Duck\DuckManager.cs" />
@@ -92,6 +91,7 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyLT.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyRT.cs" />
+    <Compile Include="Assets\Scripts\HealthBar\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Menu\GameOver.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuMain.cs" />
     <Compile Include="Assets\Scripts\Menu\Pause.cs" />
@@ -117,19 +117,19 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Kamilka/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/GestureUI/BackGroundDone/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Kamilka/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/GestureUI/BackGroundDone/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Kamilka/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/GestureUI/BackGroundDone/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Kamilka/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/GestureUI/BackGroundDone/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/Kamilka/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/GestureUI/BackGroundDone/Gesture_Based_UI_Project/KinectGame/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -336,13 +336,13 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/Kamilka/Gesture_Based_UI_Project/KinectGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/GestureUI/BackGroundDone/Gesture_Based_UI_Project/KinectGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/Kamilka/Gesture_Based_UI_Project/KinectGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/GestureUI/BackGroundDone/Gesture_Based_UI_Project/KinectGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/Kamilka/Gesture_Based_UI_Project/KinectGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/GestureUI/BackGroundDone/Gesture_Based_UI_Project/KinectGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
