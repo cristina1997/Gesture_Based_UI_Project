@@ -10,6 +10,7 @@ public class HealthBar : MonoBehaviour
     float MaxHealth { get; set; }
 
     public Slider healthbar;
+    GameOver gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +34,9 @@ public class HealthBar : MonoBehaviour
 
     void Die()
     {
+        gameOver = FindObjectOfType<GameOver>();
         CurrentHealth = 0;
-        Debug.Log("Dead");
+        gameOver.EndGame();
     }
 
     float CalculateHealth()
