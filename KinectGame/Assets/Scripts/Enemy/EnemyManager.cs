@@ -94,6 +94,7 @@ public class EnemyManager : MonoBehaviour
             // Left
             newEnemyLeft.mEnemyManager = this;
             allEnemiesLT.Add(newEnemyLeft);
+            
 
             // Right
             newEnemyRight.mEnemyManager = this;

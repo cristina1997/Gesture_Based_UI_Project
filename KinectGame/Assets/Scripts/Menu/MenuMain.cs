@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuMain : MonoBehaviour
 {
+  //  public GameObject Camera;
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+      //  DontDestroyOnLoad(this.Camera);
+        SceneManager.LoadScene(1);
+
     }
 
     public void QuitGame() {
