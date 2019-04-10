@@ -1193,8 +1193,8 @@ public class KinectManager : MonoBehaviour
 										
 										vCursorPos = Camera.main.ViewportToWorldPoint(vCursorPos);
 									}
-
-									HandCursor1.transform.position = Vector3.Lerp(HandCursor1.transform.position, vCursorPos, 3 * Time.deltaTime);
+                                    //3
+									HandCursor1.transform.position = Vector3.Lerp(HandCursor1.transform.position, vCursorPos, 0.7f * Time.deltaTime);
 								}
 								
 								if(ControlMouseCursor)
