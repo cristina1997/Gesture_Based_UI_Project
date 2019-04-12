@@ -84,6 +84,8 @@
     <Compile Include="Assets\Scripts\Background\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\Body\Hand.cs" />
     <Compile Include="Assets\Scripts\Body\Leg.cs" />
+    <Compile Include="Assets\Scripts\Bonuses\Bonuses.cs" />
+    <Compile Include="Assets\Scripts\Bonuses\Destroy.cs" />
     <Compile Include="Assets\Scripts\Duck\Duck.cs" />
     <Compile Include="Assets\Scripts\Duck\DuckLT.cs" />
     <Compile Include="Assets\Scripts\Duck\DuckManager.cs" />
