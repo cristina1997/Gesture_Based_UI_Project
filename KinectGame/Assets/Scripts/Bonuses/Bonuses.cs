@@ -6,7 +6,7 @@ public class Bonuses : MonoBehaviour
 {
     public Transform[] SpawnPoints;
     public float spawnTime = .5f;
-    public GameObject[] Coins;
+    public GameObject[] Bonus;
 
     void Start()
     {
@@ -16,7 +16,7 @@ public class Bonuses : MonoBehaviour
     void SpawnCoins()
     {
         Transform currentSpawnPoint = SpawnPoints[Random.Range(0, SpawnPoints.Length)].transform;
-        Instantiate(Coins[Random.Range(0, Coins.Length)], currentSpawnPoint.position, currentSpawnPoint.rotation);
+        Instantiate(Bonus[Random.Range(0, Bonus.Length)], currentSpawnPoint.position, currentSpawnPoint.rotation);
 
     }
 }

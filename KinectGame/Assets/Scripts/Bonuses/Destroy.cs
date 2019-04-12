@@ -8,9 +8,9 @@ public class Destroy : MonoBehaviour
     public float destoryTime = .5f;
     private float rotateSpeed = 300.0f;
 
-    void Start()
+    public void Kill()
     {
-        Destroy(gameObject, destoryTime);
+        Destroy(gameObject);
     }
 
     void Update()

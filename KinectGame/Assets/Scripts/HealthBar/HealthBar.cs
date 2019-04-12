@@ -49,4 +49,10 @@ public class HealthBar : MonoBehaviour
         Debug.Log(CurrentHealth); 
     }
 
+    public void AddHealth(float bonus)
+    {
+      CurrentHealth += bonus;
+      healthbar.value = CalculateHealth();
+    }
+
 }

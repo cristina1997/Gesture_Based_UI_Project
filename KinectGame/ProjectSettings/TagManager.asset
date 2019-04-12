@@ -8,6 +8,7 @@ TagManager:
   - DuckRT
   - EnemyRT
   - EnemyLT
+  - Bonus
   layers:
   - Default
   - TransparentFX
