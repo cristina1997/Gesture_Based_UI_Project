@@ -43,7 +43,7 @@ public class EnemyLT : MonoBehaviour
     void Update()
     {
         // changing the position of the ducks
-        transform.position += mMovementDir * Time.deltaTime * 5f;
+        transform.position += mMovementDir * Time.deltaTime * 3f;
     }
 
     public IEnumerator DestroyEnemies()

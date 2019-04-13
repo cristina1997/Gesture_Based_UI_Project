@@ -26,7 +26,7 @@ public class EnemyRT : MonoBehaviour
         enemyManagerObject = GameObject.Find("EnemyManager");
         mEnemyManager = (EnemyManager)enemyManagerObject.GetComponent(typeof(EnemyManager));
 
-        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.5f));
+        mCurrentChanger = StartCoroutine(MoveLeft(5.0f, 0.3f));
     }
 
     private void OnBecameInvisible()
@@ -43,7 +43,7 @@ public class EnemyRT : MonoBehaviour
     void Update()
     {
         // changing the position of the bubbles
-        transform.position += mMovementDir * Time.deltaTime * 5f;
+        transform.position += mMovementDir * Time.deltaTime * 3f;
 
 
     }

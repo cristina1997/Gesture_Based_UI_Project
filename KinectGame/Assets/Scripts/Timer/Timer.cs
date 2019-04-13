@@ -40,7 +40,7 @@ public class Timer : MonoBehaviour
         if (startCounter)
         {
             //Computes the ellapsed time
-            ellapsedTime += Time.deltaTime; ;
+            ellapsedTime += Time.deltaTime;
             //Gets the minutes
             minutes = (int)ellapsedTime / 60;
             //Gets the seconds

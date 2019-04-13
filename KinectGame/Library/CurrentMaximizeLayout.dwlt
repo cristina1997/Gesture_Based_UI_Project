@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 14570
+  controlID: 6382
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 14571
+  controlID: 6383
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 14547
+  controlID: 6384
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -174,8 +174,8 @@ MonoBehaviour:
     y: 0
     width: 290
     height: 286
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 224}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -212,7 +212,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e024fffffc29ffff302cffff0e65ffff2666ffff5a68ffff9084ffffe687ffff929affffdc9fffffbaabffff32b1ffff52baffff30bdffff28c8ffff56ceffff3ad2ffffc6d8ffff98dcffffa6e5ffff46faffffb2fbffffe62e0000542f0000d05c0000325d0000425d0000da6900003c6a00004c6a0000387a0000aa7a0000d07c0000dc7c000044a6000050a6000044b50000acb5000072b600006ad50000d2d50000
+      m_ExpandedIDs: c2b7ffff5ebaffff26c2ffffb2fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -255,8 +255,8 @@ MonoBehaviour:
     y: 0
     width: 676
     height: 286
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 224}
+  m_MaxSize: {x: 4004, y: 4024}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 8}
@@ -362,8 +362,8 @@ MonoBehaviour:
     y: 286
     width: 966
     height: 349
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 232, y: 274}
+  m_MaxSize: {x: 10002, y: 10024}
   m_ActualView: {fileID: 10}
   m_Panes:
   - {fileID: 10}
@@ -408,20 +408,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts/Enemy
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts/Enemy
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Kamilka\Gesture_Based_UI_Project\KinectGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 108.88417}
-    m_SelectedIDs: b0280000
-    m_LastClickedID: 10416
-    m_ExpandedIDs: 000000008a28000098280000b028000070290000c0290000162a00005e2a00007c2a0000d82a00002c2c0000662e0000682e00006a2e00006c2e00006e2e0000702e0000722e0000742e0000762e0000782e000000ca9a3b
+    scrollPos: {x: 0, y: 117.28185}
+    m_SelectedIDs: dc2c0000
+    m_LastClickedID: 11484
+    m_ExpandedIDs: 00000000902800009e280000b628000076290000c62900001c2a0000642a0000842a0000e22a0000362c00007e2e0000802e0000822e0000842e0000862e0000882e00008a2e00008c2e00008e2e0000902e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -449,7 +449,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008a28000098280000b028000070290000c0290000162a00005e2a00007c2a0000d82a00002c2c0000662e0000682e00006a2e00006c2e00006e2e0000702e0000722e0000742e0000762e0000782e000000ca9a3b
+    m_ExpandedIDs: 00000000902800009e280000b628000076290000c62900001c2a0000642a0000842a0000e22a0000362c00007e2e0000802e0000822e0000842e0000862e0000882e00008a2e00008c2e00008e2e0000902e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -474,8 +474,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f229ffff
-    m_LastClickedInstanceID: -54798
+    m_SelectedInstanceIDs: 92260000
+    m_LastClickedInstanceID: 9874
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 66370000000000008c280000902e0000
     m_RenameOverlay:
@@ -549,8 +549,8 @@ MonoBehaviour:
     y: 0
     width: 400
     height: 635
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 74}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}

@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
+    float timeDelay = 30f;
+    float increment = 10f;
 
     // left duck variables
     public GameObject leftEnemyPrefab;
     private List<EnemyLT> allEnemiesLT = new List<EnemyLT>();
     private Vector2 bottomLeft, centerLeft = Vector2.zero;
-    
 
     //right duck variables
     public GameObject rightEnemyPrefab;
@@ -32,6 +33,12 @@ public class EnemyManager : MonoBehaviour
     {
         StartCoroutine(CreateEnemies());
     }
+
+    void Update()
+    {
+        timeDelay += Time.deltaTime;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -50,7 +57,7 @@ public class EnemyManager : MonoBehaviour
         float targetX = Random.Range(bottomLeft.x, centerLeft.x);
         float targetY = Random.Range(bottomLeft.y, centerLeft.y);
 
-        return new Vector3(targetX, targetY, 0);  
+        return new Vector3(targetX, targetY, 0);
     }
 
 
@@ -77,7 +84,7 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator CreateEnemies()
     {
-        while (allEnemiesLT.Count < 1 || allEnemiesRT.Count < 1)
+        while (true)
         {
 
             // Create and add the ducks
@@ -99,10 +106,8 @@ public class EnemyManager : MonoBehaviour
             newEnemyRight.mEnemyManager = this;
             allEnemiesRT.Add(newEnemyRight);
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(timeDelay);
+            timeDelay -= increment;
         }
     }
-
- 
-
 }
