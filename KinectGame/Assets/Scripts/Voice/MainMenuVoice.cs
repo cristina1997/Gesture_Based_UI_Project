@@ -12,23 +12,23 @@ public class MainMenuVoice : MonoBehaviour
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public GameObject menu;
-    public ConfidenceLevel confidence = ConfidenceLevel.Medium;
+    public GameObject highScore;//Refer to main menu panel display
+    //public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
 
 
     void Start()
     {
         actions.Add("play", PlayGame);
-        actions.Add("start", PlayGame);
-        actions.Add("new game", PlayGame);
-
+      
         actions.Add("quit", QuitGame);
-        actions.Add("stop game", QuitGame);
-        actions.Add("stop playing", QuitGame);
-        actions.Add("finish", QuitGame);
+     
+        actions.Add("score", Score);
+
+        actions.Add("back", Back);
 
         //checks Array of strings
-        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray(), confidence);
+        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();
     }
@@ -59,5 +59,30 @@ public class MainMenuVoice : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void Score()
+    {
+        //Display Main Menu 
+        menu.SetActive(false);
+        //Hide High Scores
+        highScore.SetActive(true);
+    }
+
+    private void Back()
+    {
+        //Display Main Menu 
+        menu.SetActive(true);
+        //Hide High Scores
+        highScore.SetActive(false);
+    }
+
+    void OnDestroy()
+    {
+        if (keywordRecognizer != null)
+        {
+            keywordRecognizer.Stop();
+            keywordRecognizer.Dispose();
+        }
     }
 }

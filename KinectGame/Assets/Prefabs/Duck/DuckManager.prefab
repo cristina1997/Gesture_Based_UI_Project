@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3311065623307076136}
   m_Layer: 0
   m_Name: DuckManager
-  m_TagString: Untagged
+  m_TagString: DuckManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,4 +47,7 @@ MonoBehaviour:
     type: 3}
   rightDuckPrefab: {fileID: 4869617692389505140, guid: 71d2711177a543748ab58407a9e90de1,
     type: 3}
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 2680677849556914049, guid: a1cf40cad28b8aa469bbd8be154a4419,
+    type: 3}
+  score: 0
+  highScore: 0

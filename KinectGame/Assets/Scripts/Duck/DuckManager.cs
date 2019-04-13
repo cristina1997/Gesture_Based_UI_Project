@@ -18,7 +18,8 @@ public class DuckManager : MonoBehaviour
     private Vector2 centerRight, topRight = Vector2.zero;
 
     public Text scoreText;
-    private int score;
+    public int score;
+    public int highScore = 0;
 
     private void Awake()
     {
@@ -32,7 +33,21 @@ public class DuckManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score = 0;
+        if (PlayerPrefs.HasKey("Score"))
+        {
+            if (Application.loadedLevel == 0) {
+                PlayerPrefs.DeleteKey("Score");
+                score = 0;
+            }else
+            {
+                score = PlayerPrefs.GetInt("Score");
+            }
+        }
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            highScore = PlayerPrefs.GetInt("HighScore");
+        }
+        
         UpdateScore();
         StartCoroutine(CreateDucks());
     }

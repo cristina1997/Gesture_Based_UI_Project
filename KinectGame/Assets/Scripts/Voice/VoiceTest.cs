@@ -19,13 +19,11 @@ public class VoiceTest : MonoBehaviour
 
     void Start()
     {
-        actions.Add("stop", Pause);
         actions.Add("pause", Pause);
         actions.Add("pause game", Pause);
 
         actions.Add("resume", Resume);
         actions.Add("continue", Resume);
-        actions.Add("play", Resume);
 
         actions.Add("back", Back);
         actions.Add("go back", Back);
@@ -74,4 +72,5 @@ public class VoiceTest : MonoBehaviour
         Time.timeScale = 0;
         SceneManager.LoadScene(0);
     }
+
 }
