@@ -488,6 +488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb80e673a2333b4689f3e7550554066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeCounter: {fileID: 4020249844444893861, guid: 66c9d57c725408448ba8c890e7c3ab66,
+    type: 3}
 --- !u!114 &231193793
 MonoBehaviour:
   m_ObjectHideFlags: 0

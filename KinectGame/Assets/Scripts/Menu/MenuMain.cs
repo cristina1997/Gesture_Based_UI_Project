@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MenuMain : MonoBehaviour
 {
-    public void PlayGame()
+    public GameObject TimeCounter;//References to the time counter game object
+
+    void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //TimeCounter.GetComponent<Timer>().StartTimeCounter();
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
     }
 
-    public void QuitGame() {
+    void QuitGame() {
         Debug.Log("Quit");
         Application.Quit();
     }

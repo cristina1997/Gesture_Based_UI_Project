@@ -25,6 +25,7 @@ public class VoiceTest : MonoBehaviour
 
         actions.Add("resume", Resume);
         actions.Add("continue", Resume);
+        actions.Add("play", Resume);
 
         actions.Add("back", Back);
         actions.Add("go back", Back);

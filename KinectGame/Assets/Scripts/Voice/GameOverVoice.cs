@@ -55,6 +55,7 @@ public class GameOverVoice : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+        Time.timeScale = 0;
     }
 
     private void Back()
