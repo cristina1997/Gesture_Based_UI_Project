@@ -23,7 +23,6 @@ public class MainMenuVoice : MonoBehaviour
         actions.Add("new game", PlayGame);
 
         actions.Add("quit", QuitGame);
-        actions.Add("stop", QuitGame);
         actions.Add("stop game", QuitGame);
         actions.Add("stop playing", QuitGame);
         actions.Add("finish", QuitGame);
@@ -53,6 +52,7 @@ public class MainMenuVoice : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()

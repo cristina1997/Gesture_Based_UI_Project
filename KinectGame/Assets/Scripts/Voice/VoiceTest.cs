@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
-
+using UnityEngine.SceneManagement;
 
 
 public class VoiceTest : MonoBehaviour
@@ -14,6 +14,7 @@ public class VoiceTest : MonoBehaviour
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public static bool GameIsPaused = false;
     public GameObject pausemenuUI;
+    public GameObject mainMenuUI;
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
 
@@ -21,22 +22,16 @@ public class VoiceTest : MonoBehaviour
     {
         actions.Add("stop", Pause);
         actions.Add("pause", Pause);
-        actions.Add("stop game", Pause);
         actions.Add("pause game", Pause);
 
-        actions.Add("play", Resume);
-        actions.Add("play again", Resume);
-        actions.Add("back", Resume);
-        actions.Add("go back", Resume);
         actions.Add("resume", Resume);
-        actions.Add("start", Resume);
-        actions.Add("start again", Resume);
+        actions.Add("continue", Resume);
 
-        actions.Add("quit", QuitGame);
-        actions.Add("finish", QuitGame);
+        actions.Add("back", Back);
+        actions.Add("go back", Back);
 
         //checks Array of strings
-        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray(),confidence);
+        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray(), confidence);
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();
     }
@@ -51,13 +46,15 @@ public class VoiceTest : MonoBehaviour
     }
 
     //Recognize what was said
-    private void RecognizedSpeech(PhraseRecognizedEventArgs speech) {
+    private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
+    {
         Debug.Log(speech.text);
         actions[speech.text].Invoke();
     }
 
     // Start Pause
-    private void Pause() {
+    private void Pause()
+    {
         pausemenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
@@ -71,9 +68,10 @@ public class VoiceTest : MonoBehaviour
         GameIsPaused = false;
     }
 
-    public void QuitGame()
+    private void Back()
     {
-        Debug.Log("Quit");
-        Application.Quit();
+        //Starts time
+        Time.timeScale = 0;
+        SceneManager.LoadScene(0);
     }
 }

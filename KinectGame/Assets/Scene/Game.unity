@@ -788,6 +788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausemenuUI: {fileID: 1863619384}
+  mainMenuUI: {fileID: 1632041292758517804, guid: a6ebcddf0f38ecd4a8560af4043802a5,
+    type: 3}
   confidence: 1
   speed: 1
 --- !u!222 &442100337
@@ -1846,6 +1848,7 @@ GameObject:
   - component: {fileID: 1384714799}
   - component: {fileID: 1384714798}
   - component: {fileID: 1384714803}
+  - component: {fileID: 1384714804}
   m_Layer: 0
   m_Name: GameOver
   m_TagString: Untagged
@@ -1954,6 +1957,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1150674432}
+--- !u!114 &1384714804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384714797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ee01ba7ca5fd74a935eed2ec21909d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverUI: {fileID: 1384714797}
+  confidence: 1
+  speed: 1
 --- !u!1 &1394219960
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,6 +3000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a676b585946b1b54c9d61e2cadd64d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonusAmount: 10
 --- !u!132 &2086377467 stripped
 GUIText:
   m_CorrespondingSourceObject: {fileID: 5945425712466617395, guid: 77ae413cb59965146906e7eeddbc94b4,
