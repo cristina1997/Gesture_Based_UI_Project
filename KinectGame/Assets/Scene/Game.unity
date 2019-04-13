@@ -788,8 +788,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausemenuUI: {fileID: 1863619384}
-  mainMenuUI: {fileID: 1632041292758517804, guid: a6ebcddf0f38ecd4a8560af4043802a5,
-    type: 3}
   confidence: 1
   speed: 1
 --- !u!222 &442100337
@@ -1966,7 +1964,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1384714797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42ee01ba7ca5fd74a935eed2ec21909d, type: 3}
+  m_Script: {fileID: 11500000, guid: a08c8bd09eafb054e8049f7ad72d562e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1384714797}

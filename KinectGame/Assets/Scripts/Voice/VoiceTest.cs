@@ -14,7 +14,6 @@ public class VoiceTest : MonoBehaviour
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public static bool GameIsPaused = false;
     public GameObject pausemenuUI;
-    public GameObject mainMenuUI;
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
 
