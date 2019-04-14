@@ -21,11 +21,11 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
 
-        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight / 2 - 180, Camera.main.farClipPlane));
-        centerLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight / 2 - 140, Camera.main.farClipPlane));
+        centerLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight / 2 - 300, Camera.main.farClipPlane));
+        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight / 2 - 200, Camera.main.farClipPlane));
 
-        bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 200, Camera.main.pixelHeight / 2 - 180, Camera.main.farClipPlane));
-        centerRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 200, Camera.main.pixelHeight / 2 - 140, Camera.main.farClipPlane));
+        centerRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 200, Camera.main.pixelHeight / 2 - 300, Camera.main.farClipPlane));
+        bottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 200, Camera.main.pixelHeight / 2 - 200, Camera.main.farClipPlane));
     }
 
     // Start is called before the first frame update
@@ -42,11 +42,11 @@ public class EnemyManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight / 2 - 180, Camera.main.farClipPlane)), 0.5f);
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight / 2 - 140, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight / 2 - 300, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight / 2 - 200, Camera.main.farClipPlane)), 0.5f);
 
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 200, Camera.main.pixelHeight / 2 - 180, Camera.main.farClipPlane)), 0.5f);
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 200, Camera.main.pixelHeight / 2 - 140, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 200, Camera.main.pixelHeight / 2 - 300, Camera.main.farClipPlane)), 0.5f);
+        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 200, Camera.main.pixelHeight / 2 - 200, Camera.main.farClipPlane)), 0.5f);
 
     }
 
