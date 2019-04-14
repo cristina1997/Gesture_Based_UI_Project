@@ -22,4 +22,4 @@ First and foremost, you will need to install [Unity](https://unity3d.com/get-uni
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```> run the KinectV.exe``` to play the game
 
 ## UML Diagram
-![[alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/ClassDiagram-UML.png)
+![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/ClassDiagram-UML.png)
