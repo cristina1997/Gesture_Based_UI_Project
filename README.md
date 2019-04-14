@@ -21,5 +21,11 @@ First and foremost, you will need to install [Unity](https://unity3d.com/get-uni
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Go to the DuckGameBuild folder </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```> run the KinectV.exe``` to play the game
 
+***
+
+## Devided Tasks
+
+***
+
 ## UML Diagram
 ![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/ClassDiagram-UML.png)
