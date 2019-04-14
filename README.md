@@ -1,6 +1,6 @@
 # Gesture_Based_UI_Project
 This project involves developing an application in which the users must use gestures such as hand movements or speech to interract with it.
-For this game, the player is required to have a Kinect V1 hardware as well as the Windows 10 adapter. Kinect's position relative to whoever is playing this game is an important facor, for more information on why that is and tips in relation to it click [here](https://support.xbox.com/en-US/xbox-360/accessories/sensor-placement).
+For this game, the player is required to have a Kinect V1 hardware as well as the Windows 10 adapter. Kinect's position relative to whoever is playing this game is an important factor. For more information on why that is and the correct position [click here](https://support.xbox.com/en-US/xbox-360/accessories/sensor-placement).
 
 ***
 
