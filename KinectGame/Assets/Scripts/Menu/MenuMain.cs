@@ -9,6 +9,7 @@ public class MenuMain : MonoBehaviour
     public GameObject TimeCounter;//References to the time counter game object
     public GameObject menu;//Refer to main menu panel display
     public GameObject highScore;//Refer to main menu panel display
+    public GameObject instructionsMenu;
     public Text high;
     public GameObject duckmg;
 
@@ -35,6 +36,14 @@ public class MenuMain : MonoBehaviour
 
     }
 
+    public void Instructions()
+    {
+        GameObject.Find("MainMenu").SetActive(false);
+        instructionsMenu.SetActive(true);
+
+    }
+
+    
     //On Back Button click in leaderboard panel
     public void BackButton()
     {
@@ -42,6 +51,7 @@ public class MenuMain : MonoBehaviour
         menu.SetActive(true);
         //Hide High Scores
         highScore.SetActive(false);
+        instructionsMenu.SetActive(false);
     }
 
 
