@@ -6,36 +6,38 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 using UnityEngine.SceneManagement;
 
-
+// This class is responsible to detect voice command using unity speech on pasue menu.
 public class VoiceTest : MonoBehaviour
 {
-    // Waits for string
-    private KeywordRecognizer keywordRecognizer;
-    private Dictionary<string, Action> actions = new Dictionary<string, Action>();
-    public static bool GameIsPaused = false;
-    public GameObject pausemenuUI;
-    public ConfidenceLevel confidence = ConfidenceLevel.Medium;
-    public float speed = 1;
+    // Declare variables
+    private KeywordRecognizer keywordRecognizer; // keywordRecognizer waits for strings.
+    private Dictionary<string, Action> actions = new Dictionary<string, Action>(); // Dectionary as array of words.
+    public static bool GameIsPaused = false; // Check if the game is paused
+    public GameObject pausemenuUI; // Holder for pausemenu.
+    public ConfidenceLevel confidence = ConfidenceLevel.Medium; // Speech confidence level.
+    public float speed = 1; //Speech speed value.
 
     void Start()
     {
+        // Adds set of strings to pasue game.
         actions.Add("pause", Pause);
         actions.Add("pause game", Pause);
         actions.Add("stop game", Pause);
         actions.Add("stop", Pause);
-
+        // Adds set of strings to resume game.
         actions.Add("resume", Resume);
         actions.Add("continue", Resume);
-
+        // Adds set of string to back to main menu.
         actions.Add("back", Back);
         actions.Add("go back", Back);
 
-        //checks Array of strings
+        //Checks Array of strings.
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray(), confidence);
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();
     }
 
+    // Stops keywordRecognizer when quits application.
     private void OnApplicationQuit()
     {
         if (keywordRecognizer != null && keywordRecognizer.IsRunning)
@@ -43,16 +45,16 @@ public class VoiceTest : MonoBehaviour
             keywordRecognizer.OnPhraseRecognized -= RecognizedSpeech;
             keywordRecognizer.Stop();
         }
-    }
+    }// End of OnApplicationQuit method.
 
-    //Recognize what was said
+    //Recognize what was said.
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {
         Debug.Log(speech.text);
         actions[speech.text].Invoke();
     }
 
-    // Start Pause
+    // Starts Pause menu.
     private void Pause()
     {
         pausemenuUI.SetActive(true);
@@ -60,7 +62,7 @@ public class VoiceTest : MonoBehaviour
         GameIsPaused = true;
     }
 
-    // Resume to game
+    // Resume to game.
     private void Resume()
     {
         pausemenuUI.SetActive(false);
@@ -68,6 +70,7 @@ public class VoiceTest : MonoBehaviour
         GameIsPaused = false;
     }
 
+    // Back to main menu from pause.
     private void Back()
     {
         //Starts time
@@ -75,4 +78,4 @@ public class VoiceTest : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-}
+}// End of VoiceTest.

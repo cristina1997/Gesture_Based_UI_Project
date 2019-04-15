@@ -697,7 +697,7 @@ MonoBehaviour:
   highScore: {fileID: 1003624087}
   instructionsMenu: {fileID: 1688086435}
   high: {fileID: 1543334656}
-  duckmg: {fileID: 2567729252375215977, guid: f8a59844ef101c043901afe9f72161dc, type: 3}
+  duckmg: {fileID: 2567729252375215977, guid: 80cb79e622558214faa65a8c3a3899fd, type: 3}
 --- !u!114 &231193793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b46c1d1d0c65a44da4b631212e33924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 3311065623306978442, guid: 80cb79e622558214faa65a8c3a3899fd, type: 3}
+  menu: {fileID: 2567729252375215977, guid: 80cb79e622558214faa65a8c3a3899fd, type: 3}
   highScore: {fileID: 1003624087}
   instructions: {fileID: 1688086435}
   speed: 1
@@ -1468,7 +1468,7 @@ MonoBehaviour:
   highScore: {fileID: 1003624087}
   instructionsMenu: {fileID: 1688086435}
   high: {fileID: 1543334656}
-  duckmg: {fileID: 2567729252375215977, guid: f8a59844ef101c043901afe9f72161dc, type: 3}
+  duckmg: {fileID: 2567729252375215977, guid: 80cb79e622558214faa65a8c3a3899fd, type: 3}
 --- !u!114 &1003624090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2458,7 +2458,7 @@ MonoBehaviour:
   highScore: {fileID: 1003624087}
   instructionsMenu: {fileID: 1688086435}
   high: {fileID: 1543334656}
-  duckmg: {fileID: 2567729252375215977, guid: f8a59844ef101c043901afe9f72161dc, type: 3}
+  duckmg: {fileID: 2567729252375215977, guid: 80cb79e622558214faa65a8c3a3899fd, type: 3}
 --- !u!114 &1688086440
 MonoBehaviour:
   m_ObjectHideFlags: 0

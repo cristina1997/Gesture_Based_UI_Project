@@ -3,34 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class is responsible for showing a pause menu.
 public class Pause : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
-    public GameObject pausemenuUI;
-    private float tempTimeScale;//Value for time scale when pause is on(stops the game)
-
-
+    // Declare variables
+    public static bool GameIsPaused = false;  //Sets pause panel to false at the start.
+    public GameObject pausemenuUI; // Holder for pause menu.
+    private float tempTimeScale; // Value for time scale when pause is on(stops the game)
+    
+    // Pause game using "p" key.
     void Update()
     {
        if(Input.GetKeyDown(KeyCode.P))
         {
             if (GameIsPaused)
             {
+                // Go back to game.
                 Resume();
             }else
             {
+                // Displays pause menu.
                 PauseGame();
             }
         }
-    }
+    }// End of Update method.
 
+    // Resume game from pause menu.
     void Resume()
     {
         pausemenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-    }
+    }// End of Resumemethod.
 
+    // Display pause menu.
     void PauseGame()
     {
         pausemenuUI.SetActive(!pausemenuUI.activeInHierarchy);//If active in hierrarhy deaactivate pause
@@ -42,5 +48,5 @@ public class Pause : MonoBehaviour
         {
             Time.timeScale = tempTimeScale;
         }//End of else
-    }
-}
+    }// End of PauseGame method.
+}// End of Pause class.
