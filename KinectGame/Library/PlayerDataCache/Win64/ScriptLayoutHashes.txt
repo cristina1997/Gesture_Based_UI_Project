@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/GestureUI/InstructionsAdded/Gesture_Based_UI_Project/DuckGameBuild/KinectV.exe
+C:/Users/Kamilka/Desktop/Project/Gesture_Based_UI_Project/DuckGameBuild/KinectV.exe
 SceneListBegin?
 Assets/Scene/Menu.unity
 Assets/Scene/Game.unity
