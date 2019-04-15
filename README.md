@@ -38,4 +38,5 @@ Cristina                   |  Stoyan                   |  Kamika
 ***
 
 ## UML Diagram
-![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/ClassDiagram-UML.png)
+![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Game-Scripts-UML.png)
+![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Kinect-Scripts-UML.png)
