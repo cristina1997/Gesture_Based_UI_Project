@@ -37,6 +37,9 @@ Cristina                   |  Stoyan                   |  Kamika
 
 ***
 
-## UML Diagram
+## UML Diagrams
+### Game
 ![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Game-Scripts-UML.png)
+
+### Kinect
 ![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Kinect-Scripts-UML.png)
