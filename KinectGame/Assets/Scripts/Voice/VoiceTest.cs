@@ -21,6 +21,8 @@ public class VoiceTest : MonoBehaviour
     {
         actions.Add("pause", Pause);
         actions.Add("pause game", Pause);
+        actions.Add("stop game", Pause);
+        actions.Add("stop", Pause);
 
         actions.Add("resume", Resume);
         actions.Add("continue", Resume);
