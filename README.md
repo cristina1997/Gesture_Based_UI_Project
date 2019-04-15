@@ -29,6 +29,7 @@ First and foremost, you will need to install [Unity](https://unity3d.com/get-uni
 Cristina                   |  Stoyan                   |  Kamika                   
 :-------------------------:|:-------------------------:|:-------------------------:
 ![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Cristina.PNG)  |  ![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Stoyan.PNG)      | ![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Kamila.PNG)
+![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/team.PNG)
 
 
 
