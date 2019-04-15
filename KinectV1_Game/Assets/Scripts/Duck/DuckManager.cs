@@ -7,22 +7,33 @@ public class DuckManager : MonoBehaviour
 {
 
     // left duck variables
+    //game object made public to attach prefab for left duck
     public GameObject leftDuckPrefab;
+    //list for all left ducks
     private List<DuckLT> allDucksLT = new List<DuckLT>();
+    //position of left duck
     private Vector2 centerLeft, topLeft = Vector2.zero;
 
 
     // right duck variables
+    // game object for the right duck for the prefab
     public GameObject rightDuckPrefab;
+    // list of right ducks
     private List<DuckRT> allDucksRT = new List<DuckRT>();
+    //position of right dick
     private Vector2 centerRight, topRight = Vector2.zero;
 
+    //score display
     public Text scoreText;
+    //score int
     public int score;
+    //high score variable
     public int highScore = 0;
 
     private void Awake()
     {
+        //assigns positions of top left , center left , topright & center right for the ducks as declared above .
+
         topLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight - 200, Camera.main.farClipPlane));
         centerLeft = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight - 350, Camera.main.farClipPlane));
         
@@ -34,6 +45,9 @@ public class DuckManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //if statements to check wether text score exists (score string exists)
+        // returns true if key exists in preferences
+
         if (PlayerPrefs.HasKey("Score"))
         {
             if (Application.loadedLevel == 0) {
@@ -48,13 +62,16 @@ public class DuckManager : MonoBehaviour
         {
             highScore = PlayerPrefs.GetInt("HighScore");
         }
-        
+        //updates the score
         UpdateScore();
+        //creates ducks
         StartCoroutine(CreateDucks());
     }
 
     private void OnDrawGizmos()
     {
+        //draws the spawn points on the scene
+
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight - 200, Camera.main.farClipPlane)), 0.5f);
         Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth - 1500, Camera.main.pixelHeight - 350, Camera.main.farClipPlane)), 0.5f);

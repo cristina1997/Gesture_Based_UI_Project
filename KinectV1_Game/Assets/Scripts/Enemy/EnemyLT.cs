@@ -4,37 +4,36 @@ using UnityEngine;
 
 public class EnemyLT : MonoBehaviour
 {
-    //public Sprite mDuckSprite;
-
+    
+    //creates enemy manager and sets it to null
     [HideInInspector]
     public EnemyManager mEnemyManager = null;
-
+    // game object enemy manager object
     private GameObject enemyManagerObject;
     private Vector3 mMovementDir = Vector2.right;    // randomized movement direction
-    //private SpriteRenderer mSpriteRenderer = null;
     private Coroutine mCurrentChanger = null;       // changing the direction
 
     private void Awake()
     {
-        //mSpriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //sets enemy manager object equal to .find which looks for enemy manager
         enemyManagerObject = GameObject.Find("EnemyManager");
+        //sets m enemy manager equal to the script EnemyManager
         mEnemyManager = (EnemyManager)enemyManagerObject.GetComponent(typeof(EnemyManager));
-
+        //moves the enemy to right at specified points
         mCurrentChanger = StartCoroutine(MoveRight(5.0f, 0.5f));
     }
 
     private void OnBecameInvisible()
     {
-        // turn off the game object when no longer seen by the camera
-        //gameObject.SetActive(false);
 
-        // moving the bubble back to the screen before disabling it
+        // moving the enemy back to the screen before disabling it
         transform.position = mEnemyManager.GetPlanePositionLeft();
     }
 
@@ -42,13 +41,15 @@ public class EnemyLT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // changing the position of the ducks
+        // changing the position of the enemies
         transform.position += mMovementDir * Time.deltaTime * 3f;
     }
 
     public IEnumerator DestroyEnemies()
     {
-
+        // stops the move, destroys the enemies (left) within 0.1 seconds
+        // changes poistion as specified in getplaneposition
+        // and moves it to the right at specified points 5.0f, 0.5f
         StopCoroutine(mCurrentChanger);
         yield return new WaitForSeconds(0.1f);
         transform.position = mEnemyManager.GetPlanePositionLeft();
@@ -59,7 +60,7 @@ public class EnemyLT : MonoBehaviour
     {
         // the while loop runs while the game object is active
         // Move left forever, could just as easily check for a certain bound like:
-        // while (transform.position.x < -10.0f) {
+        // while (transform.position.x < -10.0f) {     
         while (gameObject.activeSelf)
         {
             mMovementDir = Vector2.right;
