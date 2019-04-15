@@ -1102,6 +1102,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HandCursor
       objectReference: {fileID: 0}
+    - target: {fileID: 1254163042409646843, guid: 4b0ddbaa05029654ba806085629f6b93,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1254163042409646845, guid: 4b0ddbaa05029654ba806085629f6b93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2754,6 +2759,11 @@ PrefabInstance:
     - target: {fileID: 1771497780756673946, guid: dd9477f69a5e7284d81c01d95efad959,
         type: 3}
       propertyPath: DisplayUserMap
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771497780756673946, guid: dd9477f69a5e7284d81c01d95efad959,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

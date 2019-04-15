@@ -18,7 +18,7 @@ public class AvatarController : MonoBehaviour
 	public bool verticalMovement = false;
 	
 	// Rate at which avatar will move through the scene. The rate multiplies the movement speed (.001f, i.e dividing by 1000, unity's framerate).
-	protected int moveRate = 1;
+	protected int moveRate = 3;
 	
 	// Slerp smooth factor
 	public float smoothFactor = 5f;

@@ -13,6 +13,7 @@ public class MainMenuVoice : MonoBehaviour
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public GameObject menu;
     public GameObject highScore;//Refer to main menu panel display
+    public GameObject instructions;
     //public ConfidenceLevel confidence = ConfidenceLevel.Medium;
     public float speed = 1;
 
@@ -26,6 +27,8 @@ public class MainMenuVoice : MonoBehaviour
         actions.Add("score", Score);
 
         actions.Add("back", Back);
+
+        actions.Add("instructions", Instructions);
 
         //checks Array of strings
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
@@ -69,12 +72,21 @@ public class MainMenuVoice : MonoBehaviour
         highScore.SetActive(true);
     }
 
+    public void Instructions()
+    {
+        //Display Main Menu 
+        menu.SetActive(false);
+        //Hide High Scores
+        instructions.SetActive(true);
+    }
+
     private void Back()
     {
         //Display Main Menu 
         menu.SetActive(true);
         //Hide High Scores
         highScore.SetActive(false);
+        instructions.SetActive(false);
     }
 
     void OnDestroy()
