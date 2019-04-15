@@ -25,6 +25,7 @@ First and foremost, you will need to install [Unity](https://unity3d.com/get-uni
 ***
 
 ## Devided Tasks
+![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Cristina.PNG)
 
 ***
 
