@@ -22,20 +22,21 @@ First and foremost, you will need to install [Unity](https://unity3d.com/get-uni
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Go to the DuckGameBuild folder </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```> run the KinectV.exe``` to play the game
 
+
 ***
+
 
 ## Devided Tasks
 
-Cristina                   |  Stoyan                   |  Kamika                   
+Cristina                   |  Stoyan                   |  Kamila                   
 :-------------------------:|:-------------------------:|:-------------------------:
 ![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/Team%20Work/Cristina.PNG)  |  ![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/Team%20Work/Stoyan.PNG)      | ![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/Team%20Work/Kamila.PNG)
 
 ![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/Team%20Work/team.PNG)
 
 
-
-
 ***
+
 
 ## UML Diagrams
 ### Game
