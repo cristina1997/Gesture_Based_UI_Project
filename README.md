@@ -28,9 +28,9 @@ First and foremost, you will need to install [Unity](https://unity3d.com/get-uni
 
 Cristina                   |  Stoyan                   |  Kamika                   
 :-------------------------:|:-------------------------:|:-------------------------:
-![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Cristina.PNG)  |  ![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Stoyan.PNG)      | ![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Kamila.PNG)
+![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/Team%20Work/Cristina.PNG)  |  ![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/Team%20Work/Stoyan.PNG)      | ![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/Team%20Work/Kamila.PNG)
 
-![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/team.PNG)
+![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/Team%20Work/team.PNG)
 
 
 
@@ -39,7 +39,7 @@ Cristina                   |  Stoyan                   |  Kamika
 
 ## UML Diagrams
 ### Game
-![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Game-Scripts-UML.png)
+![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/UML/Game-Scripts-UML.png)
 
 ### Kinect
-![alt text](https://github.com/kamilam1987/Gesture_Based_UI_Project/blob/master/img/Kinect-Scripts-UML.png)
+![alt text](https://github.com/cristina1997/Gesture_Based_UI_Project/blob/master/Images/UML/Kinect-Scripts-UML.png)
